@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/Talljack/talljack-eslint-config",
   "funding": "https://github.com/sponsors/talljack",
+  "bugs": "https://github.com/Talljack/talljack-eslint-config/issues",
   "scripts": {
     "build": "tsup --format esm,cjs --clean --dts",
     "lint": "eslint .",

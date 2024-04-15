@@ -1,6 +1,10 @@
 import type { ESLint, Linter } from 'eslint'
 import type { ParserOptions } from '@typescript-eslint/parser'
 
+export type EslintFlatConfigItem = Omit<Linter.FlatConfig<Linter.RulesRecord>, 'plugins'> & {
+  plugins?: Record<string, any>
+}
+
 export interface OptionsHasTypescript {
   typescript?: boolean
 }

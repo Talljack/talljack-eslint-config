@@ -1,18 +1,15 @@
-import type { ESLint } from 'eslint'
 import {
   reactConfig,
   typescriptConfig
 } from './configs'
 
-import type { OptionsConfig, ReactOptions, TypescriptOptions } from './types'
+import type { EslintFlatConfigItem, OptionsConfig, ReactOptions, TypescriptOptions } from './types'
 import { getOverrides, resolveSubOptions } from './utils'
 import ignores from './configs/ignores'
 
-
-
 export const createEslintConfig = (options: OptionsConfig) => {
   const {typescript, react} = options
-  const config: ESLint.ConfigData[] = []
+  const config: EslintFlatConfigItem[] = []
 
   config.push(...ignores())
   if (typescript) {
