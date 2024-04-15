@@ -13,7 +13,7 @@ export const resolveSubOptions = <K extends keyof OptionsConfig>(options: Option
 export const getOverrides = <K extends keyof OptionsConfig>(options: OptionsConfig, key: K) => {
   const subValue = resolveSubOptions(options, key)
   return {
-    ...options.overrides?.[key] ?? {},
+    ...options.overrides?.[key as keyof typeof options.overrides] ?? {},
     ...'overrides' in subValue ? subValue.overrides : {}
   }
 }
