@@ -4,7 +4,7 @@ export default createEslintConfig(
   {
     react: true,
     typescript: {
-      'overrides': {
+      overrides: {
         '@typescript-eslint/no-explicit-any': 'off',
       }
     },
