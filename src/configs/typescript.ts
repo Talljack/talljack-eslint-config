@@ -1,12 +1,10 @@
-import type { ESLint } from 'eslint'
-import eslint from '@eslint/js';
 import tseslint from "typescript-eslint";
 import parserTs from '@typescript-eslint/parser'
 import pluginTs from '@typescript-eslint/eslint-plugin'
-import  type { TypescriptOptions } from '../types'
+import  type { TypescriptOptions, EslintFlatConfigItem } from '../types'
 import { toArray } from '../utils';
 import { GLOB_TS, GLOB_TSX } from '../globs'
-const typescriptConfig: (options: TypescriptOptions) => ESLint.ConfigData[] = (options:TypescriptOptions = {}) => {
+const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] = (options:TypescriptOptions = {}) => {
   const {
     overrides = {},
     parserOptions = {}
@@ -22,7 +20,6 @@ const typescriptConfig: (options: TypescriptOptions) => ESLint.ConfigData[] = (o
         'ts': pluginTs
       }
     },
-    eslint.configs.recommended,
     ...tseslint.configs.recommended,
     tsconfigPath ? {
         files,
@@ -94,7 +91,7 @@ const typescriptConfig: (options: TypescriptOptions) => ESLint.ConfigData[] = (o
         'no-unused-expressions': 'off'
       }
     }
-  ] as ESLint.ConfigData[]
+  ] as EslintFlatConfigItem[]
 }
 
 export default typescriptConfig

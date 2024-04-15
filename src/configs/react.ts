@@ -1,16 +1,10 @@
-/* eslint-disable ts/ban-ts-comment */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-import type { ESLint } from 'eslint'
-// @ts-expect-error
 import pluginReact from 'eslint-plugin-react'
-// @ts-expect-error
 import pluginReactHooks from 'eslint-plugin-react-hooks'
-// @ts-expect-error
 import pluginReactRefresh from 'eslint-plugin-react-refresh'
 import { GLOB_TS, GLOB_TSX } from '../globs'
 
-import type { ReactOptions } from '../types'
-const reactConfig = (options: ReactOptions = {}) => {
+import type { ReactOptions, EslintFlatConfigItem } from '../types'
+const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options: ReactOptions = {}) => {
   const {
     typescript = true,
     overrides = {},
@@ -34,7 +28,6 @@ const reactConfig = (options: ReactOptions = {}) => {
       }
     },
     {
-      // @ts-expect-error
       files,
       name: 'react-rules',
       languageOptions: {
@@ -80,7 +73,7 @@ const reactConfig = (options: ReactOptions = {}) => {
         ...overrides
       }
     }
-  ] as ESLint.ConfigData[]
+  ] as EslintFlatConfigItem[]
 }
 
 export default reactConfig
