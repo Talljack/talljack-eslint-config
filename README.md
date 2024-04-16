@@ -4,7 +4,7 @@ Talljack's eslint config
 
 ## Why write it?
 
-When eslint upgrades to 9.x, my all projects need to update eslint config file, so I want to write my own config to be reused in all projects.
+When eslint upgrades to 9.x, my all projects need to update eslint config file, so I want to write my config to be reused in all projects.
 
 ## How to use it?
 
