@@ -1,3 +1,5 @@
 declare module 'eslint-plugin-react'
 declare module 'eslint-plugin-react-hooks'
 declare module 'eslint-plugin-react-refresh'
+declare module 'eslint-plugin-unused-imports'
+declare module '@eslint/js'
