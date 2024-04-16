@@ -7,7 +7,7 @@ import type { EslintFlatConfigItem, OptionsConfig, ReactOptions, TypescriptOptio
 import { getOverrides, resolveSubOptions } from './utils'
 import ignores from './configs/ignores'
 
-export const createEslintConfig = (options: OptionsConfig) => {
+export const createEslintConfig = (options: OptionsConfig, ...userConfigs: EslintFlatConfigItem[]) => {
   const {typescript, react} = options
   const config: EslintFlatConfigItem[] = []
 
@@ -24,6 +24,9 @@ export const createEslintConfig = (options: OptionsConfig) => {
       typescript: !!typescript,
       overrides: getOverrides(options, 'react') as ReactOptions['overrides']
     }))
+  }
+  if (userConfigs.length) {
+    config.push(...userConfigs)
   }
   return config
 }

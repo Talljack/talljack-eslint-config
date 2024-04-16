@@ -17,9 +17,11 @@
     "bin"
   ],
   "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.cjs",
-    "types": "./dist/index.d.ts"
+    "*": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
   },
   "homepage": "https://github.com/Talljack/talljack-eslint-config",
   "funding": "https://github.com/sponsors/talljack",
@@ -39,7 +41,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "@stylistic/eslint-plugin-migrate": "^1.7.0",
+    "@stylistic/eslint-plugin-migrate": "^1.7.2",
     "@types/bun": "latest",
     "@types/eslint": "^8.56.9",
     "@types/fs-extra": "^11.0.4",
@@ -62,7 +64,7 @@
     "simple-git-hooks": "^2.11.1",
     "tsup": "^8.0.2",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.6.0"
+    "typescript-eslint": "^7.7.0"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
@@ -71,10 +73,10 @@
     "*": "eslint --fix"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.6.0",
-    "@typescript-eslint/parser": "^7.6.0",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
     "eslint-config-flat-gitignore": "^0.1.5",
-    "eslint-flat-config-utils": "^0.2.2",
+    "eslint-flat-config-utils": "^0.2.3",
     "eslint-merge-processors": "^0.1.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import-x": "^0.5.0",

@@ -1,4 +1,4 @@
-import { createEslintConfig } from './src'
+import createEslintConfig from './src'
 
 export default createEslintConfig(
   {
