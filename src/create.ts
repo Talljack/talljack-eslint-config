@@ -3,7 +3,8 @@ import {
   ignoresConfig,
   javascriptConfig,
   reactConfig,
-  typescriptConfig
+  typescriptConfig,
+  vueConfig
 } from './configs'
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
 import { isPackageExists } from 'local-pkg'
@@ -14,42 +15,50 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
   const {
     typescript = isPackageExists('typescript'),
     react,
+    vue,
     inEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
     enableGitignore = true
   } = options
-  const config: EslintFlatConfigItem[] = []
+  const configs: EslintFlatConfigItem[] = []
 
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
-      config.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r(enableGitignore)]) as EslintFlatConfigItem)
+      configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r(enableGitignore)]) as EslintFlatConfigItem)
     } else {
       if (fs.existsSync('.gitignore')) {
-        config.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r()]) as EslintFlatConfigItem)
+        configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r()]) as EslintFlatConfigItem)
       }
     }
   }
 
-  config.push(...ignoresConfig())
-  config.push(...javascriptConfig({
+  configs.push(...ignoresConfig())
+  configs.push(...javascriptConfig({
     inEditor,
     overrides: getOverrides(options, 'javascript') as JavascriptOptions['overrides']
   }))
   if (typescript) {
-    config.push(...typescriptConfig({
+    configs.push(...typescriptConfig({
       ...resolveSubOptions(options, 'typescript'),
       overrides: getOverrides(options, 'typescript') as TypescriptOptions['overrides']
     }))
   }
   if (react) {
-    config.push(...reactConfig({
+    configs.push(...reactConfig({
       ...resolveSubOptions(options, 'react'),
       typescript: !!typescript,
       overrides: getOverrides(options, 'react') as ReactOptions['overrides']
     }))
   }
-  if (userConfigs.length) {
-    config.push(...userConfigs)
+  if (vue) {
+    configs.push(vueConfig({
+      ...resolveSubOptions(options, 'vue'),
+      typescript: !!typescript,
+      overrides: getOverrides(options, 'vue') as ReactOptions['overrides']
+    }) as EslintFlatConfigItem)
   }
-  const composer = new FlatConfigComposer(config)
+  if (userConfigs.length) {
+    configs.push(...userConfigs)
+  }
+  const composer = new FlatConfigComposer(configs)
   return composer
 }
