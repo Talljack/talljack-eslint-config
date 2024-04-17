@@ -24,7 +24,13 @@ export interface OptionsWithFiles {
   files?: Linter.FlatConfig['files']
 }
 
+export interface OptionsWithStylistics {
+  stylistic?: boolean
+}
+
 export type ReactOptions = OptionsOverrides & OptionsHasTypescript &OptionsWithFiles
+
+export type VueOptions = OptionsOverrides & OptionsHasTypescript & OptionsWithFiles & OptionsWithStylistics
 
 export type TypescriptOptions = OptionsTypescriptWithTypes & OptionsOverrides & OptionsWithFiles & {
   parserOptions?: Partial<ParserOptions>
@@ -40,10 +46,13 @@ export interface OptionsConfig {
   react?: boolean | OptionsOverrides,
   inEditor?: boolean,
   enableGitignore?: boolean,
+
+  vue?: boolean | VueOptions
   overrides?: {
     typescript?: ESLint.ConfigData['rules']
     react?: ESLint.ConfigData['rules']
-    javascript?: ESLint.ConfigData['rules']
+    javascript?: ESLint.ConfigData['rules'],
+    vue?: ESLint.ConfigData['rules']
   }
 }
 

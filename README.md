@@ -74,6 +74,19 @@ export default createEslintConfig({
 })
 ```
 
+
+### Vue3
+
+To use Vue3 eslint config, you can turn it on.
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  vue: true
+})
+```
+
 ### Type-aware rules
 
 you can read more [type-aware](https://typescript-eslint.io/getting-started/typed-linting) here.
@@ -86,6 +99,7 @@ export default createEslintConfig({
     tsconfigPath: 'tsconfig.json'
   }
 })
+```
 
 ### Lint Staged
 
@@ -97,9 +111,13 @@ you need to install `lint-staged` and `simple-git-hooks`
 pnpm i -D lint-staged simple-git-hooks
 
 npx simple-git-hooks
+
 ```
 
-```typescript
+then
+
+```ts
+// package.json
 {
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
