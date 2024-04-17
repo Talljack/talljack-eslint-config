@@ -1,7 +1,7 @@
 import tseslint from "typescript-eslint";
 import parserTs from '@typescript-eslint/parser'
 import pluginTs from '@typescript-eslint/eslint-plugin'
-import  type { TypescriptOptions, EslintFlatConfigItem } from '../types'
+import  type { EslintFlatConfigItem, TypescriptOptions } from '../types'
 import { toArray } from '../utils';
 import { GLOB_TS, GLOB_TSX } from '../globs'
 const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] = (options:TypescriptOptions = {}) => {

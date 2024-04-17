@@ -1,6 +1,6 @@
 import { GLOB_EXCLUDE } from '../globs'
 import type { EslintFlatConfigItem } from '../types'
-const ignores: () => EslintFlatConfigItem[] = () => {
+const ignoresConfig: () => EslintFlatConfigItem[] = () => {
   return [
     {
       ignores: GLOB_EXCLUDE
@@ -8,4 +8,4 @@ const ignores: () => EslintFlatConfigItem[] = () => {
   ]
 }
 
-export default ignores
+export default ignoresConfig
