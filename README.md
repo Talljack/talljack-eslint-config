@@ -1,4 +1,4 @@
-# talljack-eslint-config
+## talljack-eslint-config
 
 Talljack's eslint config
 
@@ -76,8 +76,7 @@ export default createEslintConfig({
 
 
 ### Vue3
-
-To use Vue3 eslint config, you can turn it on.
+To use the Vue3 eslint config, you can turn it on.
 
 ```typescript
 // eslint.config.js
@@ -103,7 +102,7 @@ export default createEslintConfig({
 
 ### Lint Staged
 
-If you want to apply lint and autofix before every commit, you can add the following to your `package.json`
+If you want to apply lint and auto-fix before every commit, you can add the following to your `package.json`
 
 you need to install `lint-staged` and `simple-git-hooks`
 
@@ -116,7 +115,7 @@ npx simple-git-hooks
 
 then
 
-```ts
+```typescript
 // package.json
 {
   "simple-git-hooks": {
@@ -128,6 +127,6 @@ then
 }
 ```
 
-# License
+## License
 
 [MIT](./LICENSE) License @2024-PRESENT [Talljack](https://github.com/talljack)

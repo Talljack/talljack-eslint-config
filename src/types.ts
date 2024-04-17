@@ -40,7 +40,12 @@ export type JavascriptOptions = OptionsOverrides & OptionsWithFiles & {
   inEditor?: boolean
 }
 
+export type MarkdownOptions = OptionsOverrides & OptionsWithFiles
+
+export type CommentsOptions = OptionsOverrides
+
 export interface OptionsConfig {
+  stylistic?: boolean,
   javascript?: boolean | JavascriptOptions,
   typescript?: boolean | TypescriptOptions,
   react?: boolean | OptionsOverrides,
@@ -48,11 +53,17 @@ export interface OptionsConfig {
   enableGitignore?: boolean,
 
   vue?: boolean | VueOptions
+
+  markdown?: boolean | MarkdownOptions
+
+  comments?: CommentsOptions
   overrides?: {
     typescript?: ESLint.ConfigData['rules']
     react?: ESLint.ConfigData['rules']
     javascript?: ESLint.ConfigData['rules'],
-    vue?: ESLint.ConfigData['rules']
+    vue?: ESLint.ConfigData['rules'],
+    markdown?: ESLint.ConfigData['rules'],
+    comments?: ESLint.ConfigData['rules']
   }
 }
 

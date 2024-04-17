@@ -4,6 +4,7 @@ import pluginReactRefresh from 'eslint-plugin-react-refresh'
 import { GLOB_JSX, GLOB_TSX } from '../globs'
 
 import type { EslintFlatConfigItem, ReactOptions } from '../types'
+
 const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options: ReactOptions = {}) => {
   const {
     typescript = true,
