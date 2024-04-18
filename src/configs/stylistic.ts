@@ -1,7 +1,7 @@
 import { default as pluginStylistic } from '@stylistic/eslint-plugin'
-import type { EslintFlatConfigItem, StylisticOptions } from '../types'
+import type { EslintFlatConfigItem, StylisticConfig, StylisticOptions } from '../types'
 
-const stylisticDefaultConfig: StylisticOptions['stylistic'] = {
+export const stylisticDefaultConfig: StylisticConfig = {
   arrowParens: false,
   commaDangle: 'always-multiline',
   indent: 2,

@@ -5,6 +5,11 @@ import type { FlatConfigItem } from 'eslint-config-flat-gitignore'
 
 export type Awaitable<T> = T | Promise<T>
 
+export interface PrettierOptionsRequired {
+}
+
+export type PerttierOptions = Partial<PrettierOptionsRequired>
+
 export type EslintFlatConfigItem = Omit<Linter.FlatConfig<Linter.RulesRecord>, 'plugins'> & {
   plugins?: Record<string, any>
 } & Partial<FlatConfigItem>
@@ -54,6 +59,22 @@ export type JsoncOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStyl
 
 export type StylisticOptions = OptionsWithStylistics & OptionsOverrides
 
+export interface DprintOptions {
+  indentWidth?: number
+  quoteStyle?: 'preferSingle' | 'perferDouble'
+  useTab?: boolean
+}
+
+export interface OptionsFormatters {
+  css?: 'prettier' | boolean
+  html?: 'prettier' | boolean
+  markdown?: 'prettier' | 'dprint' | boolean
+  graphql?: 'prettier' | boolean
+
+  prettierOptions?: PerttierOptions
+  dprintOptions?: DprintOptions
+}
+
 export interface OptionsConfig {
   sort?: boolean | OptionsWithFilesAndOverrides
   javascript?: boolean | JavascriptOptions
@@ -72,6 +93,7 @@ export interface OptionsConfig {
   jsonc?: boolean | JsoncOptions
 
   stylistic?: boolean | StylisticConfig
+  formatters?: boolean | OptionsFormatters
   overrides?: {
     typescript?: ESLint.ConfigData['rules']
     react?: ESLint.ConfigData['rules']

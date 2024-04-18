@@ -2,6 +2,7 @@ import createEslintConfig from './src'
 
 export default createEslintConfig(
   {
+    formatters: true,
     javascript: true,
     jsonc: true,
     markdown: true,

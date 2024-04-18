@@ -3,6 +3,7 @@ import { FlatConfigComposer } from 'eslint-flat-config-utils'
 import { isPackageExists } from 'local-pkg'
 import {
   commentsConfig,
+  formatterConfig,
   ignoresConfig,
   importsConfig,
   javascriptConfig,
@@ -111,6 +112,15 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
         ...stylistic,
         overrides: getOverrides(options, 'stylistic'),
       }),
+    )
+  }
+  // formatters
+  if (options.formatters) {
+    configs.push(
+      ...formatterConfig(
+        options.formatters,
+        typeof stylistic === 'object' ? stylistic : {},
+      ),
     )
   }
   if (userConfigs.length)
