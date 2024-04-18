@@ -17,6 +17,21 @@ export const GLOB_JSON = '**/*.json'
 export const GLOB_JSON5 = '**/*.json5'
 export const GLOB_JSONC = '**/*.jsonc'
 
+// css
+export const GLOB_CSS = '**/*.css'
+export const GLOB_POSTCSS = '**/*.(p,post)css'
+// less
+export const GLOB_LESS = '**/*.less'
+// scss
+export const GLOB_SCSS = '**/*.scss'
+export const GLOB_STYLE = '**/*.{c,le,sc}ss'
+
+// html
+export const GLOB_HTML = '**/*.htm?(l)'
+
+// graphql
+export const GLOB_GRAPHQL = '**/*.{g,graph}ql'
+
 export const GLOB_EXCLUDE = [
   '**/node_modules',
   '**/dist',

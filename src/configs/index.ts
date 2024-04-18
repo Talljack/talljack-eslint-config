@@ -10,14 +10,15 @@ import jsoncConfig, {
 import markdownConfig from './markdown'
 import nodeConfig from './node'
 import reactConfig from './react'
-
 import stylisticConfig from './stylistic'
 import typescriptConfig from './typescript'
 import vueConfig from './vue'
 import sortConfig from './sort'
+import formatterConfig from './formatters'
 
 export {
   commentsConfig,
+  formatterConfig,
   ignoresConfig,
   importsConfig,
   javascriptConfig,
