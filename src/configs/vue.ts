@@ -11,16 +11,15 @@ const vueConfig: (options: VueOptions) => Awaitable<EslintFlatConfigItem[]> = as
     files = [GLOB_VUE],
     stylistic = true,
     overrides = {},
-    typescript
+    typescript,
   } = options
-
 
   return [
     // setup config
     {
       name: 'vue-setup',
       plugins: {
-        vue: pluginVue
+        vue: pluginVue,
       },
       languageOptions: {
         globals: {
@@ -38,9 +37,9 @@ const vueConfig: (options: VueOptions) => Awaitable<EslintFlatConfigItem[]> = as
           toRef: 'readonly',
           toRefs: 'readonly',
           watch: 'readonly',
-          watchEffect: 'readonly'
-        }
-      }
+          watchEffect: 'readonly',
+        },
+      },
     },
     // rules config
     {
@@ -50,12 +49,12 @@ const vueConfig: (options: VueOptions) => Awaitable<EslintFlatConfigItem[]> = as
         parser: parserVue,
         parserOptions: {
           ecmaFeatures: {
-            jsx: true
+            jsx: true,
           },
           sourceType: 'module',
           extraFileExtensions: ['.vue'],
-          parser: typescript ? await interopDefault(import('@typescript-eslint/parser')) : undefined
-        }
+          parser: typescript ? await interopDefault(import('@typescript-eslint/parser')) : undefined,
+        },
       },
       processor: mergeProcessors([
         pluginVue.processors['.vue'],
@@ -65,7 +64,7 @@ const vueConfig: (options: VueOptions) => Awaitable<EslintFlatConfigItem[]> = as
             customBlocks: true,
             script: false,
             template: false,
-          }
+          },
         }),
       ]),
       rules: {
@@ -108,9 +107,9 @@ const vueConfig: (options: VueOptions) => Awaitable<EslintFlatConfigItem[]> = as
               'vue/template-curly-spacing': 'error',
             }
           : {},
-          ...overrides
-      }
-    }
+        ...overrides,
+      },
+    },
   ] as EslintFlatConfigItem[]
 }
 

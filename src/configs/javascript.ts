@@ -1,9 +1,9 @@
 import globals from 'globals'
 import { default as eslint } from '@eslint/js'
 import { default as pluginUnusedImports } from 'eslint-plugin-unused-imports'
-import  type { EslintFlatConfigItem, JavascriptOptions } from '../types'
+import type { EslintFlatConfigItem, JavascriptOptions } from '../types'
 
-const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] = (options:JavascriptOptions = {}) => {
+const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] = (options: JavascriptOptions = {}) => {
   const {
     inEditor = false,
     overrides = {},
@@ -22,7 +22,7 @@ const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] =
           // readonly
           document: 'readonly',
           window: 'readonly',
-          navigator: 'readonly'
+          navigator: 'readonly',
         },
         parserOptions: {
           ecmaFeatures: {
@@ -34,10 +34,10 @@ const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] =
         sourceType: 'module',
       },
       linterOptions: {
-        reportUnusedDisableDirectives: true
+        reportUnusedDisableDirectives: true,
       },
       plugins: {
-        'unused-imports': pluginUnusedImports
+        'unused-imports': pluginUnusedImports,
       },
       rules: {
         'accessor-pairs': ['error', { enforceForClassMembers: true, setWithoutGet: true }],
@@ -137,8 +137,8 @@ const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] =
         'use-isnan': ['error', { enforceForIndexOf: true, enforceForSwitchCase: true }],
         'valid-typeof': ['error', { requireStringLiterals: true }],
         ...overrides,
-      }
-    }
+      },
+    },
   ] as EslintFlatConfigItem[]
 }
 

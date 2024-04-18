@@ -7,10 +7,11 @@ export default createEslintConfig(
     vue: true,
     markdown: true,
     jsonc: true,
+    stylistic: true,
     typescript: {
       overrides: {
         '@typescript-eslint/no-explicit-any': 'off',
-      }
+      },
     },
   },
 )

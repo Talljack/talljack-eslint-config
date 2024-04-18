@@ -5,9 +5,8 @@ import type { EslintFlatConfigItem, MarkdownOptions } from '../types'
 const markdownConfig: (options: MarkdownOptions) => EslintFlatConfigItem[] = (options: MarkdownOptions = {}) => {
   const {
     files = [GLOB_MARKDOWN],
-    overrides = {}
+    overrides = {},
   } = options
-
 
   return [
     ...markdown.configs.recommended,
@@ -16,23 +15,23 @@ const markdownConfig: (options: MarkdownOptions) => EslintFlatConfigItem[] = (op
       name: 'markdown-setup',
       plugins: {
         markdown,
-      }
+      },
     },
     // processor markdown ignore files
     {
       files,
       name: 'markdown-processor',
       ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
-      processor: 'markdown/markdown'
+      processor: 'markdown/markdown',
     },
     // rules config
     {
       name: 'markdown-rules',
       files,
       rules: {
-        ...overrides
+        ...overrides,
       },
-    }
+    },
   ] as EslintFlatConfigItem[]
 }
 

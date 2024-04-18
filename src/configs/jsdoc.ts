@@ -7,11 +7,11 @@ const jsdocConfig: (options: CommentsOptions) => EslintFlatConfigItem[] = (optio
     {
       name: 'jsdoc-rules',
       plugins: {
-        jsdoc: pluginJsdoc
+        jsdoc: pluginJsdoc,
       },
       rules: {
         ...pluginJsdoc.configs['flat/recommended'].rules,
-        ...overrides
+        ...overrides,
       },
     },
   ] as EslintFlatConfigItem[]

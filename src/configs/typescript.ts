@@ -1,14 +1,14 @@
-import tseslint from "typescript-eslint";
+import tseslint from 'typescript-eslint'
 import parserTs from '@typescript-eslint/parser'
 import pluginTs from '@typescript-eslint/eslint-plugin'
-import  type { EslintFlatConfigItem, TypescriptOptions } from '../types'
-import { toArray } from '../utils';
+import type { EslintFlatConfigItem, TypescriptOptions } from '../types'
+import { toArray } from '../utils'
 import { GLOB_TS, GLOB_TSX } from '../globs'
 
-const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] = (options:TypescriptOptions = {}) => {
+const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] = (options: TypescriptOptions = {}) => {
   const {
     overrides = {},
-    parserOptions = {}
+    parserOptions = {},
   } = options
 
   const files = [GLOB_TS, GLOB_TSX]
@@ -18,22 +18,24 @@ const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] =
     {
       name: 'typescript-setup',
       plugins: {
-        'ts': pluginTs
-      }
+        ts: pluginTs,
+      },
     },
     ...tseslint.configs.recommended,
-    tsconfigPath ? {
-        files,
-        languageOptions: {
-          parser: parserTs,
-          parserOptions: {
-            sourceType: 'module',
-            project: tsconfigPath,
-            tsconfigRootDir: process.cwd(),
-            ...parserOptions
-          }
-      }
-    } : {},
+    tsconfigPath
+      ? {
+          files,
+          languageOptions: {
+            parser: parserTs,
+            parserOptions: {
+              sourceType: 'module',
+              project: tsconfigPath,
+              tsconfigRootDir: process.cwd(),
+              ...parserOptions,
+            },
+          },
+        }
+      : {},
     {
       files,
       name: 'typescript-rules',
@@ -64,8 +66,8 @@ const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] =
         'ts/prefer-ts-expect-error': 'error',
         'ts/triple-slash-reference': 'off',
         'ts/unified-signatures': 'off',
-        ...overrides
-      }
+        ...overrides,
+      },
     },
     {
       files: ['**/*.d.ts'],
@@ -75,23 +77,23 @@ const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] =
         'import/no-duplicates': 'off',
         'no-restricted-syntax': 'off',
         'unused-imports/no-unused-vars': 'off',
-      }
+      },
     },
     {
       files: ['**/*.js', '**/*.cjs'],
       name: 'typescript-cjs',
       rules: {
         'ts/no-require-imports': 'off',
-        'ts/no-var-requires': 'off'
-      }
+        'ts/no-var-requires': 'off',
+      },
     },
     {
       files: ['**/*.{test,spec}.ts?(x)'],
       name: 'typescript-tests',
       rules: {
-        'no-unused-expressions': 'off'
-      }
-    }
+        'no-unused-expressions': 'off',
+      },
+    },
   ] as EslintFlatConfigItem[]
 }
 

@@ -19,13 +19,13 @@ const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options:
       plugins: {
         'react': pluginReact,
         'react-hooks': pluginReactHooks,
-        'react-refresh': pluginReactRefresh
+        'react-refresh': pluginReactRefresh,
       },
       settings: {
         react: {
-          version: 'detect'
-        }
-      }
+          version: 'detect',
+        },
+      },
     },
     {
       files,
@@ -33,9 +33,9 @@ const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options:
       languageOptions: {
         parserOptions: {
           ecmaFeatures: {
-            jsx: true
-          }
-        }
+            jsx: true,
+          },
+        },
       },
       rules: {
         // recommended rules react-hooks
@@ -65,13 +65,15 @@ const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options:
         'react/prop-types': 'error',
         'react/react-in-jsx-scope': 'off',
         'react/require-render-return': 'error',
-        ...typescript ? {
-          'react/jsx-no-undef': 'off',
-          'react/prop-type': 'off',
-        } : {},
-        ...overrides
-      }
-    }
+        ...typescript
+          ? {
+              'react/jsx-no-undef': 'off',
+              'react/prop-type': 'off',
+            }
+          : {},
+        ...overrides,
+      },
+    },
   ] as EslintFlatConfigItem[]
 }
 

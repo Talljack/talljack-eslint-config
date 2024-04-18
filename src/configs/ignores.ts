@@ -4,8 +4,8 @@ import type { EslintFlatConfigItem } from '../types'
 const ignoresConfig: () => EslintFlatConfigItem[] = () => {
   return [
     {
-      ignores: GLOB_EXCLUDE
-    }
+      ignores: GLOB_EXCLUDE,
+    },
   ]
 }
 

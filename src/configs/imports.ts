@@ -7,7 +7,7 @@ const importsConfig: (options: OptionsWithStylistics) => EslintFlatConfigItem[] 
     {
       name: 'imports-rules',
       plugins: {
-        import: pluginImport
+        import: pluginImport,
       },
       rules: {
         'import/first': 'error',
@@ -17,9 +17,11 @@ const importsConfig: (options: OptionsWithStylistics) => EslintFlatConfigItem[] 
         'import/order': 'error',
         'import/no-webpack-loader-syntax': 'error',
 
-        ...stylistic ? {
-          'import/newline-after-import': ['error', { count: 1 }],
-        } : {}
+        ...stylistic
+          ? {
+              'import/newline-after-import': ['error', { count: 1 }],
+            }
+          : {},
       },
     },
   ] as EslintFlatConfigItem[]

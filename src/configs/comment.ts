@@ -13,7 +13,7 @@ const commentsConfig: (options: CommentsOptions) => EslintFlatConfigItem[] = (op
       // link: https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/no-unused-enable.html
       rules: {
         ...pluginComments.configs.recommended.rules,
-        ...overrides
+        ...overrides,
       },
     },
   ] as EslintFlatConfigItem[]
