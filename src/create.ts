@@ -6,9 +6,13 @@ import {
   ignoresConfig,
   importsConfig,
   javascriptConfig,
+  jsdocConfig,
+  jsoncConfig,
   markdownConfig,
   nodeConfig,
   reactConfig,
+  sortPackageJsonConfig,
+  sortTsConfigJsonConfig,
   typescriptConfig,
   vueConfig
 } from './configs'
@@ -21,9 +25,12 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
     react,
     vue,
     markdown,
+    jsonc,
     inEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
-    enableGitignore = true
+    enableGitignore = true,
   } = options
+
+  const stylistic = options.stylistic === false ? false : typeof options.stylistic === 'object' ? options.stylistic : {}
   const configs: EslintFlatConfigItem[] = []
 
   if (enableGitignore) {
@@ -41,8 +48,11 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
     overrides: getOverrides(options, 'comments'),
   }))
   configs.push(...nodeConfig())
+  configs.push(...jsdocConfig({
+    overrides: getOverrides(options, 'jsdoc')
+  }))
   configs.push(...importsConfig({
-    stylistic: options.stylistic
+    stylistic
   }))
   configs.push(...javascriptConfig({
     inEditor,
@@ -73,6 +83,17 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
     configs.push(...markdownConfig({
       overrides: getOverrides(options, 'markdown')
     }))
+  }
+  // jsonc
+  if(jsonc ?? true) {
+    configs.push(
+      ...jsoncConfig({
+        overrides: getOverrides(options, 'jsonc'),
+        stylistic
+      }),
+      ...sortPackageJsonConfig(),
+      ...sortTsConfigJsonConfig()
+    )
   }
   if (userConfigs.length) {
     configs.push(...userConfigs)

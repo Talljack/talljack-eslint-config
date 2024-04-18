@@ -22,7 +22,7 @@ export default createEslintConfig()
 
 ### Add eslint scripts for package.json
 
-```json
+```typescript
 "scripts": {
   "lint": "eslint .",
   "fix": "eslint . --fix"

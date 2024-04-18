@@ -7,6 +7,11 @@ import markdownConfig from "./markdown";
 import commentsConfig from "./comment";
 import importsConfig from "./imports";
 import nodeConfig from "./node";
+import jsdocConfig from "./jsdoc";
+import jsoncConfig, {
+  sortPackageJsonConfig,
+  sortTsConfigJsonConfig
+} from "./jsonc";
 
 export {
   reactConfig,
@@ -17,5 +22,9 @@ export {
   markdownConfig,
   commentsConfig,
   importsConfig,
-  nodeConfig
+  nodeConfig,
+  jsdocConfig,
+  jsoncConfig,
+  sortPackageJsonConfig,
+  sortTsConfigJsonConfig
 }
