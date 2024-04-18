@@ -18,6 +18,7 @@ import {
   stylisticConfig,
   typescriptConfig,
   vueConfig,
+  yamlConfig,
 } from './configs'
 import type { EslintFlatConfigItem, JavascriptOptions, OptionsConfig, ReactOptions, TypescriptOptions } from './types'
 import { getOverrides, interopDefault, resolveSubOptions } from './utils'
@@ -92,6 +93,14 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
   if (markdown ?? true) {
     configs.push(...markdownConfig({
       overrides: getOverrides(options, 'markdown'),
+    }))
+  }
+  // yaml
+  if (options.yaml) {
+    configs.push(...yamlConfig({
+      ...resolveSubOptions(options, 'yaml'),
+      overrides: getOverrides(options, 'yaml'),
+      stylistic,
     }))
   }
   // jsonc

@@ -15,5 +15,6 @@ export default createEslintConfig(
       },
     },
     vue: true,
+    yaml: true,
   },
 )
