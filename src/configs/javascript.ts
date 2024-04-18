@@ -1,6 +1,6 @@
-import globals from 'globals'
 import { default as eslint } from '@eslint/js'
 import { default as pluginUnusedImports } from 'eslint-plugin-unused-imports'
+import globals from 'globals'
 import type { EslintFlatConfigItem, JavascriptOptions } from '../types'
 
 const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] = (options: JavascriptOptions = {}) => {
@@ -12,7 +12,6 @@ const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] =
   return [
     eslint.configs.recommended,
     {
-      name: 'javascript-rules',
       languageOptions: {
         ecmaVersion: 'latest',
         globals: {
@@ -21,8 +20,8 @@ const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] =
           ...globals.es2021,
           // readonly
           document: 'readonly',
-          window: 'readonly',
           navigator: 'readonly',
+          window: 'readonly',
         },
         parserOptions: {
           ecmaFeatures: {
@@ -36,6 +35,7 @@ const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] =
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
+      name: 'javascript-rules',
       plugins: {
         'unused-imports': pluginUnusedImports,
       },

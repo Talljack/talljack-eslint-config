@@ -1,11 +1,11 @@
 import { default as pluginJsonc } from 'eslint-plugin-jsonc'
-import type { EslintFlatConfigItem, JsoncOptions } from '../types'
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
+import type { EslintFlatConfigItem, JsoncOptions } from '../types'
 
 const jsoncConfig: (options: JsoncOptions) => EslintFlatConfigItem[] = (options: JsoncOptions = {}) => {
   const {
-    overrides = {},
     files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
+    overrides = {},
     stylistic = true,
   } = options
   const {
@@ -47,8 +47,8 @@ const jsoncConfig: (options: JsoncOptions) => EslintFlatConfigItem[] = (options:
 export const sortPackageJsonConfig: () => EslintFlatConfigItem[] = () => {
   return [
     {
-      name: 'sort-package-json',
       files: ['**/package.json'],
+      name: 'sort-package-json',
       rules: {
         'jsonc/sort-array-values': [
           'error',
@@ -149,8 +149,8 @@ export const sortPackageJsonConfig: () => EslintFlatConfigItem[] = () => {
 export const sortTsConfigJsonConfig: () => EslintFlatConfigItem[] = () => {
   return [
     {
-      name: 'sort-tsconfig-json',
       files: ['**/tsconfig.json'],
+      name: 'sort-tsconfig-json',
       rules: {
         'jsonc/sort-keys': [
           'error',

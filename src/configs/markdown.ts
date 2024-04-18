@@ -20,14 +20,14 @@ const markdownConfig: (options: MarkdownOptions) => EslintFlatConfigItem[] = (op
     // processor markdown ignore files
     {
       files,
-      name: 'markdown-processor',
       ignores: [GLOB_MARKDOWN_IN_MARKDOWN],
+      name: 'markdown-processor',
       processor: 'markdown/markdown',
     },
     // rules config
     {
-      name: 'markdown-rules',
       files,
+      name: 'markdown-rules',
       rules: {
         ...overrides,
       },

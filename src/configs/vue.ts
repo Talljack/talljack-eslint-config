@@ -1,7 +1,7 @@
-import pluginVue from 'eslint-plugin-vue'
-import parserVue from 'vue-eslint-parser'
-import processorVueBlocks from 'eslint-processor-vue-blocks'
 import { mergeProcessors } from 'eslint-merge-processors'
+import pluginVue from 'eslint-plugin-vue'
+import processorVueBlocks from 'eslint-processor-vue-blocks'
+import parserVue from 'vue-eslint-parser'
 import { GLOB_VUE } from '../globs'
 import type { Awaitable, EslintFlatConfigItem, VueOptions } from '../types'
 import { interopDefault } from '../utils'
@@ -9,41 +9,40 @@ import { interopDefault } from '../utils'
 const vueConfig: (options: VueOptions) => Awaitable<EslintFlatConfigItem[]> = async (options: VueOptions = {}) => {
   const {
     files = [GLOB_VUE],
-    stylistic = true,
     overrides = {},
+    stylistic = true,
     typescript,
   } = options
 
   return [
     // setup config
     {
-      name: 'vue-setup',
-      plugins: {
-        vue: pluginVue,
-      },
       languageOptions: {
         globals: {
           computed: 'readonly',
           defineEmits: 'readonly',
-          defineProps: 'readonly',
           defineExpose: 'readonly',
+          defineProps: 'readonly',
           onMounted: 'readonly',
           onUnmounted: 'readonly',
           onUpdated: 'readonly',
-          ref: 'readonly',
           reactive: 'readonly',
-          shallowRef: 'readonly',
+          ref: 'readonly',
           shallowReactive: 'readonly',
+          shallowRef: 'readonly',
           toRef: 'readonly',
           toRefs: 'readonly',
           watch: 'readonly',
           watchEffect: 'readonly',
         },
       },
+      name: 'vue-setup',
+      plugins: {
+        vue: pluginVue,
+      },
     },
     // rules config
     {
-      name: 'vue-rules',
       files,
       languageOptions: {
         parser: parserVue,
@@ -51,18 +50,19 @@ const vueConfig: (options: VueOptions) => Awaitable<EslintFlatConfigItem[]> = as
           ecmaFeatures: {
             jsx: true,
           },
-          sourceType: 'module',
           extraFileExtensions: ['.vue'],
           parser: typescript ? await interopDefault(import('@typescript-eslint/parser')) : undefined,
+          sourceType: 'module',
         },
       },
+      name: 'vue-rules',
       processor: mergeProcessors([
         pluginVue.processors['.vue'],
         processorVueBlocks({
           blocks: {
-            styles: true,
             customBlocks: true,
             script: false,
+            styles: true,
             template: false,
           },
         }),
