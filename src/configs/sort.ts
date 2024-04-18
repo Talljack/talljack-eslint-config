@@ -22,6 +22,7 @@ const sortConfig: (options: OptionsWithFilesAndOverrides) => EslintFlatConfigIte
       files,
       name: 'sort-rules',
       rules: {
+        'sort/imports': 'off',
         ...overrides,
       },
     },
