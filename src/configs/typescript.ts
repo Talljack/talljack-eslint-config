@@ -4,6 +4,7 @@ import pluginTs from '@typescript-eslint/eslint-plugin'
 import  type { EslintFlatConfigItem, TypescriptOptions } from '../types'
 import { toArray } from '../utils';
 import { GLOB_TS, GLOB_TSX } from '../globs'
+
 const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] = (options:TypescriptOptions = {}) => {
   const {
     overrides = {},

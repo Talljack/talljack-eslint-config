@@ -1,13 +1,17 @@
 import fs from 'node:fs'
+import { FlatConfigComposer } from 'eslint-flat-config-utils'
+import { isPackageExists } from 'local-pkg'
 import {
+  commentsConfig,
   ignoresConfig,
+  importsConfig,
   javascriptConfig,
+  markdownConfig,
+  nodeConfig,
   reactConfig,
   typescriptConfig,
   vueConfig
 } from './configs'
-import { FlatConfigComposer } from 'eslint-flat-config-utils'
-import { isPackageExists } from 'local-pkg'
 import type { EslintFlatConfigItem, JavascriptOptions, OptionsConfig, ReactOptions, TypescriptOptions } from './types'
 import { getOverrides, interopDefault, resolveSubOptions } from './utils'
 
@@ -16,6 +20,7 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
     typescript = isPackageExists('typescript'),
     react,
     vue,
+    markdown,
     inEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
     enableGitignore = true
   } = options
@@ -32,6 +37,13 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
   }
 
   configs.push(...ignoresConfig())
+  configs.push(...commentsConfig({
+    overrides: getOverrides(options, 'comments'),
+  }))
+  configs.push(...nodeConfig())
+  configs.push(...importsConfig({
+    stylistic: options.stylistic
+  }))
   configs.push(...javascriptConfig({
     inEditor,
     overrides: getOverrides(options, 'javascript') as JavascriptOptions['overrides']
@@ -55,6 +67,12 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
       typescript: !!typescript,
       overrides: getOverrides(options, 'vue') as ReactOptions['overrides']
     }) as EslintFlatConfigItem)
+  }
+  // markdown
+  if (markdown ?? true) {
+    configs.push(...markdownConfig({
+      overrides: getOverrides(options, 'markdown')
+    }))
   }
   if (userConfigs.length) {
     configs.push(...userConfigs)
