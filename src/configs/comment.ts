@@ -1,5 +1,4 @@
 import { default as pluginComments } from 'eslint-plugin-eslint-comments'
-
 import type { CommentsOptions, EslintFlatConfigItem } from '../types'
 
 const commentsConfig: (options: CommentsOptions) => EslintFlatConfigItem[] = (options: CommentsOptions = {}) => {

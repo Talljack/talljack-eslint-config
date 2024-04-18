@@ -12,3 +12,4 @@ declare module 'eslint-configs-flat-gitignore'
 
 declare module 'eslint-plugin-markdown'
 declare module 'eslint-plugin-eslint-comments'
+declare module 'eslint-plugin-sort'

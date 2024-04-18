@@ -1,7 +1,7 @@
-import type { ESLint, Linter } from 'eslint'
-import type { ParserOptions } from '@typescript-eslint/parser'
-import type { FlatConfigItem } from 'eslint-config-flat-gitignore'
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
+import type { ParserOptions } from '@typescript-eslint/parser'
+import type { ESLint, Linter } from 'eslint'
+import type { FlatConfigItem } from 'eslint-config-flat-gitignore'
 
 export type Awaitable<T> = T | Promise<T>
 
@@ -46,6 +46,8 @@ export type JavascriptOptions = OptionsOverrides & OptionsWithFiles & {
 
 export type MarkdownOptions = OptionsOverrides & OptionsWithFiles
 
+export type OptionsWithFilesAndOverrides = OptionsWithFiles & OptionsOverrides
+
 export type CommentsOptions = OptionsOverrides
 
 export type JsoncOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStylistics
@@ -53,6 +55,7 @@ export type JsoncOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStyl
 export type StylisticOptions = OptionsWithStylistics & OptionsOverrides
 
 export interface OptionsConfig {
+  sort?: boolean | OptionsWithFilesAndOverrides
   javascript?: boolean | JavascriptOptions
   typescript?: boolean | TypescriptOptions
   react?: boolean | OptionsOverrides
@@ -79,6 +82,7 @@ export interface OptionsConfig {
     jsdoc?: ESLint.ConfigData['rules']
     jsonc?: ESLint.ConfigData['rules']
     stylistic?: ESLint.ConfigData['rules']
+    sort?: ESLint.ConfigData['rules']
   }
 }
 

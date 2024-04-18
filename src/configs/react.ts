@@ -2,13 +2,12 @@ import pluginReact from 'eslint-plugin-react'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
 import pluginReactRefresh from 'eslint-plugin-react-refresh'
 import { GLOB_JSX, GLOB_TSX } from '../globs'
-
 import type { EslintFlatConfigItem, ReactOptions } from '../types'
 
 const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options: ReactOptions = {}) => {
   const {
-    typescript = true,
     overrides = {},
+    typescript = true,
   } = options
 
   const files = [GLOB_JSX, GLOB_TSX]
@@ -29,7 +28,6 @@ const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options:
     },
     {
       files,
-      name: 'react-rules',
       languageOptions: {
         parserOptions: {
           ecmaFeatures: {
@@ -37,14 +35,12 @@ const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options:
           },
         },
       },
+      name: 'react-rules',
       rules: {
-        // recommended rules react-hooks
-        'react-hooks/exhaustive-deps': 'warn',
-        'react-hooks/rules-of-hooks': 'error',
-
         // recommended rules react
         'react/display-name': 'error',
         'react/jsx-key': 'error',
+
         'react/jsx-no-comment-textnodes': 'error',
         'react/jsx-no-duplicate-props': 'error',
         'react/jsx-no-target-blank': 'error',
@@ -65,6 +61,9 @@ const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options:
         'react/prop-types': 'error',
         'react/react-in-jsx-scope': 'off',
         'react/require-render-return': 'error',
+        // recommended rules react-hooks
+        'react-hooks/exhaustive-deps': 'warn',
+        'react-hooks/rules-of-hooks': 'error',
         ...typescript
           ? {
               'react/jsx-no-undef': 'off',

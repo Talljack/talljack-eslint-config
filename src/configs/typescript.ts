@@ -1,9 +1,9 @@
-import tseslint from 'typescript-eslint'
-import parserTs from '@typescript-eslint/parser'
 import pluginTs from '@typescript-eslint/eslint-plugin'
+import parserTs from '@typescript-eslint/parser'
+import tseslint from 'typescript-eslint'
+import { GLOB_TS, GLOB_TSX } from '../globs'
 import type { EslintFlatConfigItem, TypescriptOptions } from '../types'
 import { toArray } from '../utils'
-import { GLOB_TS, GLOB_TSX } from '../globs'
 
 const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] = (options: TypescriptOptions = {}) => {
   const {
@@ -28,8 +28,8 @@ const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] =
           languageOptions: {
             parser: parserTs,
             parserOptions: {
-              sourceType: 'module',
               project: tsconfigPath,
+              sourceType: 'module',
               tsconfigRootDir: process.cwd(),
               ...parserOptions,
             },

@@ -11,6 +11,7 @@ import {
   markdownConfig,
   nodeConfig,
   reactConfig,
+  sortConfig,
   sortPackageJsonConfig,
   sortTsConfigJsonConfig,
   stylisticConfig,
@@ -22,13 +23,14 @@ import { getOverrides, interopDefault, resolveSubOptions } from './utils'
 
 export const createEslintConfig = (options: OptionsConfig, ...userConfigs: EslintFlatConfigItem[]) => {
   const {
-    typescript = isPackageExists('typescript'),
-    react,
-    vue,
-    markdown,
-    jsonc,
-    inEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
     enableGitignore = true,
+    inEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
+    jsonc,
+    markdown,
+    react,
+    sort = false,
+    typescript = isPackageExists('typescript'),
+    vue,
   } = options
 
   const stylistic = options.stylistic === false ? false : typeof options.stylistic === 'object' ? options.stylistic : {}
@@ -65,18 +67,24 @@ export const createEslintConfig = (options: OptionsConfig, ...userConfigs: Eslin
       overrides: getOverrides(options, 'typescript') as TypescriptOptions['overrides'],
     }))
   }
+  if (sort) {
+    configs.push(...sortConfig({
+      ...resolveSubOptions(options, 'sort'),
+      overrides: getOverrides(options, 'sort'),
+    }))
+  }
   if (react) {
     configs.push(...reactConfig({
       ...resolveSubOptions(options, 'react'),
-      typescript: !!typescript,
       overrides: getOverrides(options, 'react') as ReactOptions['overrides'],
+      typescript: !!typescript,
     }))
   }
   if (vue) {
     configs.push(vueConfig({
       ...resolveSubOptions(options, 'vue'),
-      typescript: !!typescript,
       overrides: getOverrides(options, 'vue') as ReactOptions['overrides'],
+      typescript: !!typescript,
     }) as EslintFlatConfigItem)
   }
   // markdown

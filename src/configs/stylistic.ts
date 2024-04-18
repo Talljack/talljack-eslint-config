@@ -2,34 +2,34 @@ import { default as pluginStylistic } from '@stylistic/eslint-plugin'
 import type { EslintFlatConfigItem, StylisticOptions } from '../types'
 
 const stylisticDefaultConfig: StylisticOptions['stylistic'] = {
-  jsx: true,
-  indent: 2,
-  quotes: 'single',
-  semi: false,
   arrowParens: false,
   commaDangle: 'always-multiline',
+  indent: 2,
+  jsx: true,
+  quotes: 'single',
+  semi: false,
 }
 
 const stylisticConfig: (options: StylisticOptions) => EslintFlatConfigItem[] = (options: StylisticOptions = {}) => {
   const {
-    overrides = {},
-    jsx,
+    arrowParens,
+    commaDangle,
     indent,
+    jsx,
+    overrides = {},
     quotes,
     semi,
-    commaDangle,
-    arrowParens,
   } = {
     ...stylisticDefaultConfig,
     ...options,
   }
   const config = pluginStylistic.configs.customize({
-    jsx,
-    indent,
-    quotes,
-    semi,
     arrowParens,
     commaDangle,
+    indent,
+    jsx,
+    quotes,
+    semi,
   },
   )
   return [

@@ -14,8 +14,8 @@ const importsConfig: (options: OptionsWithStylistics) => EslintFlatConfigItem[] 
         'import/no-duplicates': 'error',
         'import/no-mutable-exports': 'error',
         'import/no-self-import': 'error',
-        'import/order': 'error',
         'import/no-webpack-loader-syntax': 'error',
+        'import/order': 'error',
 
         ...stylistic
           ? {
