@@ -15,6 +15,7 @@ import typescriptConfig from './typescript'
 import vueConfig from './vue'
 import sortConfig from './sort'
 import formatterConfig from './formatters'
+import yamlConfig from './yaml'
 
 export {
   commentsConfig,
@@ -33,4 +34,5 @@ export {
   stylisticConfig,
   typescriptConfig,
   vueConfig,
+  yamlConfig,
 }

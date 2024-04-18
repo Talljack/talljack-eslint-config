@@ -59,6 +59,8 @@ export type JsoncOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStyl
 
 export type StylisticOptions = OptionsWithStylistics & OptionsOverrides
 
+export type YamlOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStylistics
+
 export interface DprintOptions {
   indentWidth?: number
   quoteStyle?: 'preferSingle' | 'perferDouble'
@@ -94,6 +96,7 @@ export interface OptionsConfig {
 
   stylistic?: boolean | StylisticConfig
   formatters?: boolean | OptionsFormatters
+  yaml?: boolean | YamlOptions
   overrides?: {
     typescript?: ESLint.ConfigData['rules']
     react?: ESLint.ConfigData['rules']
@@ -105,6 +108,7 @@ export interface OptionsConfig {
     jsonc?: ESLint.ConfigData['rules']
     stylistic?: ESLint.ConfigData['rules']
     sort?: ESLint.ConfigData['rules']
+    yaml?: ESLint.ConfigData['rules']
   }
 }
 

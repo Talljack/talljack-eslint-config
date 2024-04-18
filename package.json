@@ -89,7 +89,8 @@
     "tsup": "^8.0.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.7.0",
-    "vue-eslint-parser": "^9.4.2"
+    "vue-eslint-parser": "^9.4.2",
+    "yaml-eslint-parser": "^1.2.2"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

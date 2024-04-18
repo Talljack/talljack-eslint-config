@@ -32,6 +32,9 @@ export const GLOB_HTML = '**/*.htm?(l)'
 // graphql
 export const GLOB_GRAPHQL = '**/*.{g,graph}ql'
 
+// yaml
+export const GLOB_YAML = '**/*.y?(a)ml'
+
 export const GLOB_EXCLUDE = [
   '**/node_modules',
   '**/dist',
