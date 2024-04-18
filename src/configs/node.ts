@@ -6,7 +6,7 @@ const nodeConfig: () => EslintFlatConfigItem[] = () => {
     {
       name: 'node-rules',
       plugins: {
-        n: pluginNode
+        n: pluginNode,
       },
       rules: {
         'n/callback-return': ['error', ['err', 'error']],
@@ -16,7 +16,7 @@ const nodeConfig: () => EslintFlatConfigItem[] = () => {
         'n/no-path-concat': 'error',
         'n/prefer-global/process': ['error', 'always'],
         'n/prefer-global/buffer': ['error', 'always'],
-        'n/process-exit-as-throw': 'error'
+        'n/process-exit-as-throw': 'error',
       },
     },
   ] as EslintFlatConfigItem[]

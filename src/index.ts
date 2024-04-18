@@ -6,5 +6,5 @@ export * from './utils'
 export default createEslintConfig
 
 export {
-  createEslintConfig
+  createEslintConfig,
 }

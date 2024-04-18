@@ -1,17 +1,18 @@
-import reactConfig from "./react";
-import typescriptConfig from "./typescript";
-import javascriptConfig from "./javascript";
-import ignoresConfig from "./ignores";
-import vueConfig from "./vue";
-import markdownConfig from "./markdown";
-import commentsConfig from "./comment";
-import importsConfig from "./imports";
-import nodeConfig from "./node";
-import jsdocConfig from "./jsdoc";
+import reactConfig from './react'
+import typescriptConfig from './typescript'
+import javascriptConfig from './javascript'
+import ignoresConfig from './ignores'
+import vueConfig from './vue'
+import markdownConfig from './markdown'
+import commentsConfig from './comment'
+import importsConfig from './imports'
+import nodeConfig from './node'
+import jsdocConfig from './jsdoc'
 import jsoncConfig, {
   sortPackageJsonConfig,
-  sortTsConfigJsonConfig
-} from "./jsonc";
+  sortTsConfigJsonConfig,
+} from './jsonc'
+import stylisticConfig from './stylistic'
 
 export {
   reactConfig,
@@ -26,5 +27,6 @@ export {
   jsdocConfig,
   jsoncConfig,
   sortPackageJsonConfig,
-  sortTsConfigJsonConfig
+  sortTsConfigJsonConfig,
+  stylisticConfig,
 }

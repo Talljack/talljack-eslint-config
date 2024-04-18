@@ -6,18 +6,18 @@ const jsoncConfig: (options: JsoncOptions) => EslintFlatConfigItem[] = (options:
   const {
     overrides = {},
     files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
-    stylistic = true
+    stylistic = true,
   } = options
   const {
-    indent = 2
+    indent = 2,
   } = typeof stylistic === 'boolean' ? {} : stylistic
   return [
     ...pluginJsonc.configs['flat/recommended-with-jsonc'],
     {
       name: 'jsonc-setup',
       plugins: {
-        jsonc: pluginJsonc
-      }
+        jsonc: pluginJsonc,
+      },
     },
     {
       files,
@@ -38,13 +38,13 @@ const jsoncConfig: (options: JsoncOptions) => EslintFlatConfigItem[] = (options:
               'jsonc/quotes': 'error',
             }
           : {},
-        ...overrides
+        ...overrides,
       },
-    }
+    },
   ] as EslintFlatConfigItem[]
 }
 
-export const sortPackageJsonConfig:() => EslintFlatConfigItem[] = () => {
+export const sortPackageJsonConfig: () => EslintFlatConfigItem[] = () => {
   return [
     {
       name: 'sort-package-json',
@@ -161,9 +161,9 @@ export const sortTsConfigJsonConfig: () => EslintFlatConfigItem[] = () => {
               'references',
               'files',
               'include',
-              'exclude'
+              'exclude',
             ],
-            pathPattern: '^$'
+            pathPattern: '^$',
           },
           {
             order: [
@@ -264,11 +264,11 @@ export const sortTsConfigJsonConfig: () => EslintFlatConfigItem[] = () => {
               'skipDefaultLibCheck',
               'skipLibCheck',
             ],
-            pathPattern: '^compilerOptions$'
-          }
-        ]
-      }
-    }
+            pathPattern: '^compilerOptions$',
+          },
+        ],
+      },
+    },
   ]
 }
 
