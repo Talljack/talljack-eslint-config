@@ -5,7 +5,7 @@ import { GLOB_TS, GLOB_TSX } from '../globs'
 import type { EslintFlatConfigItem, TypescriptOptions } from '../types'
 import { toArray } from '../utils'
 
-const typescriptConfig: (options: TypescriptOptions) => EslintFlatConfigItem[] = (options: TypescriptOptions = {}) => {
+const typescriptConfig: (options?: TypescriptOptions) => EslintFlatConfigItem[] = (options: TypescriptOptions = {}) => {
   const {
     overrides = {},
     parserOptions = {},

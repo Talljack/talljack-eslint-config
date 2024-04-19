@@ -1,7 +1,7 @@
 import { default as pluginJsdoc } from 'eslint-plugin-jsdoc'
 import type { CommentsOptions, EslintFlatConfigItem } from '../types'
 
-const jsdocConfig: (options: CommentsOptions) => EslintFlatConfigItem[] = (options: CommentsOptions = {}) => {
+const jsdocConfig: (options?: CommentsOptions) => EslintFlatConfigItem[] = (options: CommentsOptions = {}) => {
   const { overrides = {} } = options
   return [
     {

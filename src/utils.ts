@@ -1,4 +1,4 @@
-import type { Awaitable, OptionsConfig, ResolveOptions } from './types'
+import type { Awaitable, EslintFlatConfigItem, OptionsConfig, ResolveOptions } from './types'
 
 export const toArray = <T>(value: T | T[]) => {
   return Array.isArray(value) ? value : [value]
@@ -19,4 +19,8 @@ export const getOverrides = <K extends keyof OptionsConfig>(options: OptionsConf
 export const interopDefault = async <T>(value: Awaitable<T>): Promise<T extends { default: infer U } ? U : T> => {
   const resolveVal = await value
   return (resolveVal as any).default || resolveVal
+}
+
+export const combineConfigs = async (...configs: Awaitable<EslintFlatConfigItem[]>[]): Promise<EslintFlatConfigItem[]> => {
+  return (await Promise.all(configs)).flat()
 }

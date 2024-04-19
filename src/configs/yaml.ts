@@ -3,7 +3,7 @@ import yamlParser from 'yaml-eslint-parser'
 import type { EslintFlatConfigItem, YamlOptions } from '../types'
 import { GLOB_YAML } from '../globs'
 
-const yamlConfig: (options: YamlOptions) => EslintFlatConfigItem[] = (options: YamlOptions = {}) => {
+const yamlConfig: (options?: YamlOptions) => EslintFlatConfigItem[] = (options: YamlOptions = {}) => {
   const { files = [GLOB_YAML], overrides = {}, stylistic = true } = options
   const {
     indent = 2,

@@ -6,7 +6,7 @@ import { GLOB_JSX, GLOB_TSX } from '../globs'
 import type { EslintFlatConfigItem, ReactOptions } from '../types'
 import { toArray } from '../utils'
 
-const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options: ReactOptions = {}) => {
+const reactConfig: (options?: ReactOptions) => EslintFlatConfigItem[] = (options: ReactOptions = {}) => {
   // TODO: https://github.com/jsx-eslint/eslint-plugin-react/issues/3699#issuecomment-2040983205
   const {
     files = [GLOB_TSX, GLOB_JSX],

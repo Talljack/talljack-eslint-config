@@ -2,7 +2,7 @@ import { default as pluginJsonc } from 'eslint-plugin-jsonc'
 import { GLOB_JSON, GLOB_JSON5, GLOB_JSONC } from '../globs'
 import type { EslintFlatConfigItem, JsoncOptions } from '../types'
 
-const jsoncConfig: (options: JsoncOptions) => EslintFlatConfigItem[] = (options: JsoncOptions = {}) => {
+const jsoncConfig: (options?: JsoncOptions) => EslintFlatConfigItem[] = (options: JsoncOptions = {}) => {
   const {
     files = [GLOB_JSON, GLOB_JSON5, GLOB_JSONC],
     overrides = {},

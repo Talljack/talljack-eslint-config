@@ -6,7 +6,7 @@ import { GLOB_VUE } from '../globs'
 import type { Awaitable, EslintFlatConfigItem, VueOptions } from '../types'
 import { interopDefault } from '../utils'
 
-const vueConfig: (options: VueOptions) => Awaitable<EslintFlatConfigItem[]> = async (options: VueOptions = {}) => {
+const vueConfig: (options?: VueOptions) => Awaitable<EslintFlatConfigItem[]> = async (options: VueOptions = {}) => {
   const {
     files = [GLOB_VUE],
     overrides = {},

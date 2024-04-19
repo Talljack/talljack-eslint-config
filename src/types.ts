@@ -1,25 +1,27 @@
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
 import type { ParserOptions } from '@typescript-eslint/parser'
-import type { ESLint, Linter } from 'eslint'
-import type { FlatConfigItem } from 'eslint-config-flat-gitignore'
+import type { Linter } from 'eslint'
+import type { ConfigNames, RuleOptions } from './genType.d'
 
 export type Awaitable<T> = T | Promise<T>
+
+export type { ConfigNames }
 
 export interface PrettierOptionsRequired {
 }
 
 export type PerttierOptions = Partial<PrettierOptionsRequired>
 
-export type EslintFlatConfigItem = Omit<Linter.FlatConfig<Linter.RulesRecord>, 'plugins'> & {
+export type EslintFlatConfigItem = Omit<Linter.FlatConfig<Linter.RulesRecord & RuleOptions>, 'plugins'> & {
   plugins?: Record<string, any>
-} & Partial<FlatConfigItem>
+}
 
 export interface OptionsHasTypescript {
   typescript?: boolean
 }
 
 export interface OptionsOverrides {
-  overrides?: ESLint.ConfigData['rules']
+  overrides?: EslintFlatConfigItem['rules']
 }
 
 export interface OptionsTypescriptWithTypes {
@@ -98,17 +100,17 @@ export interface OptionsConfig {
   formatters?: boolean | OptionsFormatters
   yaml?: boolean | YamlOptions
   overrides?: {
-    typescript?: ESLint.ConfigData['rules']
-    react?: ESLint.ConfigData['rules']
-    javascript?: ESLint.ConfigData['rules']
-    vue?: ESLint.ConfigData['rules']
-    markdown?: ESLint.ConfigData['rules']
-    comments?: ESLint.ConfigData['rules']
-    jsdoc?: ESLint.ConfigData['rules']
-    jsonc?: ESLint.ConfigData['rules']
-    stylistic?: ESLint.ConfigData['rules']
-    sort?: ESLint.ConfigData['rules']
-    yaml?: ESLint.ConfigData['rules']
+    typescript?: EslintFlatConfigItem['rules']
+    react?: EslintFlatConfigItem['rules']
+    javascript?: EslintFlatConfigItem['rules']
+    vue?: EslintFlatConfigItem['rules']
+    markdown?: EslintFlatConfigItem['rules']
+    comments?: EslintFlatConfigItem['rules']
+    jsdoc?: EslintFlatConfigItem['rules']
+    jsonc?: EslintFlatConfigItem['rules']
+    stylistic?: EslintFlatConfigItem['rules']
+    sort?: EslintFlatConfigItem['rules']
+    yaml?: EslintFlatConfigItem['rules']
   }
 }
 
