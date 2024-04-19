@@ -1,16 +1,23 @@
 import pluginReact from 'eslint-plugin-react'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
 import pluginReactRefresh from 'eslint-plugin-react-refresh'
+import parserTs from '@typescript-eslint/parser'
 import { GLOB_JSX, GLOB_TSX } from '../globs'
 import type { EslintFlatConfigItem, ReactOptions } from '../types'
+import { toArray } from '../utils'
 
 const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options: ReactOptions = {}) => {
+  // TODO: https://github.com/jsx-eslint/eslint-plugin-react/issues/3699#issuecomment-2040983205
   const {
+    files = [GLOB_TSX, GLOB_JSX],
     overrides = {},
-    typescript = true,
   } = options
 
-  const files = [GLOB_JSX, GLOB_TSX]
+  const tsconfigPath = options?.tsconfigPath
+    ? toArray(options.tsconfigPath)
+    : undefined
+
+  const typeAware = !!tsconfigPath
 
   return [
     {
@@ -20,54 +27,26 @@ const reactConfig: (options: ReactOptions) => EslintFlatConfigItem[] = (options:
         'react-hooks': pluginReactHooks,
         'react-refresh': pluginReactRefresh,
       },
-      settings: {
-        react: {
-          version: 'detect',
-        },
-      },
     },
     {
       files,
       languageOptions: {
+        parser: parserTs,
         parserOptions: {
           ecmaFeatures: {
             jsx: true,
           },
+          ...typeAware ? { project: tsconfigPath } : {},
         },
+        sourceType: 'module',
       },
       name: 'react-rules',
       rules: {
-        // recommended rules react
-        'react/display-name': 'error',
-        'react/jsx-key': 'error',
-
-        'react/jsx-no-comment-textnodes': 'error',
-        'react/jsx-no-duplicate-props': 'error',
-        'react/jsx-no-target-blank': 'error',
-        'react/jsx-no-undef': 'error',
-        'react/jsx-uses-react': 'error',
-        'react/jsx-uses-vars': 'error',
-        'react/no-children-prop': 'error',
-        'react/no-danger-with-children': 'error',
-        'react/no-deprecated': 'error',
-        'react/no-direct-mutation-state': 'error',
-        'react/no-find-dom-node': 'error',
-        'react/no-is-mounted': 'error',
-        'react/no-render-return-value': 'error',
-        'react/no-string-refs': 'error',
-        'react/no-unescaped-entities': 'error',
-        'react/no-unknown-property': 'error',
-        'react/no-unsafe': 'off',
-        'react/prop-types': 'error',
-        'react/react-in-jsx-scope': 'off',
-        'react/require-render-return': 'error',
-        // recommended rules react-hooks
-        'react-hooks/exhaustive-deps': 'warn',
-        'react-hooks/rules-of-hooks': 'error',
-        ...typescript
+        ...pluginReact.configs.recommended.rules,
+        ...pluginReactHooks.configs.recommended.rules,
+        ...typeAware
           ? {
-              'react/jsx-no-undef': 'off',
-              'react/prop-type': 'off',
+              'react/no-leaked-conditional-rendering': 'warn',
             }
           : {},
         ...overrides,

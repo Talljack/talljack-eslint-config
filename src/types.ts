@@ -37,7 +37,7 @@ export interface OptionsWithStylistics {
 export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'quotes' | 'jsx' | 'semi' | 'arrowParens' | 'commaDangle'> {
 }
 
-export type ReactOptions = OptionsOverrides & OptionsHasTypescript & OptionsWithFiles
+export type ReactOptions = OptionsOverrides & OptionsHasTypescript & OptionsWithFiles & OptionsTypescriptWithTypes
 
 export type VueOptions = OptionsOverrides & OptionsHasTypescript & OptionsWithFiles & OptionsWithStylistics
 
