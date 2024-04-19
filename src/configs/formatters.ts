@@ -1,9 +1,9 @@
-import format from 'eslint-plugin-format'
 import type { DprintOptions, EslintFlatConfigItem, OptionsFormatters, PerttierOptions, StylisticConfig } from '../types'
 import { GLOB_CSS, GLOB_GRAPHQL, GLOB_HTML, GLOB_LESS, GLOB_MARKDOWN, GLOB_POSTCSS, GLOB_SCSS } from '../globs'
+import { ensurePackages, interopDefault } from '../utils'
 import { stylisticDefaultConfig } from './stylistic'
 
-const formatterConfig = (options: OptionsFormatters | true = {}, stylistic: StylisticConfig = {}) => {
+const formatterConfig = async (options: OptionsFormatters | true = {}, stylistic: StylisticConfig = {}) => {
   if (options === true) {
     options = {
       css: true,
@@ -12,6 +12,9 @@ const formatterConfig = (options: OptionsFormatters | true = {}, stylistic: Styl
       markdown: true,
     }
   }
+  await ensurePackages([
+    'eslint-plugin-format',
+  ])
   const {
     indent,
     quotes,
@@ -41,6 +44,7 @@ const formatterConfig = (options: OptionsFormatters | true = {}, stylistic: Styl
     },
     options.dprintOptions || {},
   )
+  const format = await interopDefault(import('eslint-plugin-format'))
   const configs: EslintFlatConfigItem[] = [
     {
       name: 'formatter-setup',
