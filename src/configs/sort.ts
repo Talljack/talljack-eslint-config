@@ -1,12 +1,19 @@
-import sort from 'eslint-plugin-sort'
+// import sort from 'eslint-plugin-sort'
+import { ensurePackages, interopDefault } from '../utils'
 import { GLOB_JS, GLOB_JSX, GLOB_TS, GLOB_TSX } from '../globs'
-import type { EslintFlatConfigItem, OptionsWithFilesAndOverrides } from '../types'
+import type { Awaitable, EslintFlatConfigItem, OptionsWithFilesAndOverrides } from '../types'
 
-const sortConfig: (options?: OptionsWithFilesAndOverrides) => EslintFlatConfigItem[] = (options: OptionsWithFilesAndOverrides = {}) => {
+const sortConfig: (options?: OptionsWithFilesAndOverrides) => Awaitable<EslintFlatConfigItem[]> = async (options: OptionsWithFilesAndOverrides = {}) => {
   const {
     files = [GLOB_JS, GLOB_JSX, GLOB_TS, GLOB_TSX],
     overrides = {},
   } = options
+
+  await ensurePackages([
+    'eslint-plugin-sort',
+  ])
+
+  const sort = await interopDefault(import('eslint-plugin-sort'))
 
   return [
     sort.configs['flat/recommended'],
