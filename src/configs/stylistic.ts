@@ -10,7 +10,7 @@ export const stylisticDefaultConfig: StylisticConfig = {
   semi: false,
 }
 
-const stylisticConfig: (options: StylisticOptions) => EslintFlatConfigItem[] = (options: StylisticOptions = {}) => {
+const stylisticConfig: (options?: StylisticOptions) => EslintFlatConfigItem[] = (options: StylisticOptions = {}) => {
   const {
     arrowParens,
     commaDangle,

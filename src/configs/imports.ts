@@ -1,7 +1,7 @@
 import { default as pluginImport } from 'eslint-plugin-import-x'
 import type { EslintFlatConfigItem, OptionsWithStylistics } from '../types'
 
-const importsConfig: (options: OptionsWithStylistics) => EslintFlatConfigItem[] = (options: OptionsWithStylistics = {}) => {
+const importsConfig: (options?: OptionsWithStylistics) => EslintFlatConfigItem[] = (options: OptionsWithStylistics = {}) => {
   const { stylistic = true } = options
   return [
     {

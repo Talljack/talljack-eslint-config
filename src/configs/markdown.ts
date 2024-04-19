@@ -2,7 +2,7 @@ import markdown from 'eslint-plugin-markdown'
 import { GLOB_MARKDOWN, GLOB_MARKDOWN_IN_MARKDOWN } from '../globs'
 import type { EslintFlatConfigItem, MarkdownOptions } from '../types'
 
-const markdownConfig: (options: MarkdownOptions) => EslintFlatConfigItem[] = (options: MarkdownOptions = {}) => {
+const markdownConfig: (options?: MarkdownOptions) => EslintFlatConfigItem[] = (options: MarkdownOptions = {}) => {
   const {
     files = [GLOB_MARKDOWN],
     overrides = {},

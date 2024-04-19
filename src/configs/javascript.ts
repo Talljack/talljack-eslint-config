@@ -3,7 +3,7 @@ import { default as pluginUnusedImports } from 'eslint-plugin-unused-imports'
 import globals from 'globals'
 import type { EslintFlatConfigItem, JavascriptOptions } from '../types'
 
-const javascriptConfig: (options: JavascriptOptions) => EslintFlatConfigItem[] = (options: JavascriptOptions = {}) => {
+const javascriptConfig: (options?: JavascriptOptions) => EslintFlatConfigItem[] = (options: JavascriptOptions = {}) => {
   const {
     inEditor = false,
     overrides = {},

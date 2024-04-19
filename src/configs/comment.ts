@@ -1,7 +1,7 @@
 import { default as pluginComments } from 'eslint-plugin-eslint-comments'
 import type { CommentsOptions, EslintFlatConfigItem } from '../types'
 
-const commentsConfig: (options: CommentsOptions) => EslintFlatConfigItem[] = (options: CommentsOptions = {}) => {
+const commentsConfig: (options?: CommentsOptions) => EslintFlatConfigItem[] = (options: CommentsOptions = {}) => {
   const { overrides = {} } = options
   return [
     {
@@ -12,6 +12,7 @@ const commentsConfig: (options: CommentsOptions) => EslintFlatConfigItem[] = (op
       // link: https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/no-unused-enable.html
       rules: {
         ...pluginComments.configs.recommended.rules,
+        'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: true }],
         ...overrides,
       },
     },
