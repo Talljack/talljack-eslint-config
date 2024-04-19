@@ -1,37 +1,23 @@
+import pluginReact from 'eslint-plugin-react'
+import pluginReactHooks from 'eslint-plugin-react-hooks'
+import pluginReactRefresh from 'eslint-plugin-react-refresh'
+import parserTs from '@typescript-eslint/parser'
 import { GLOB_JSX, GLOB_TSX } from '../globs'
-import type { Awaitable, EslintFlatConfigItem, ReactOptions } from '../types'
-import { ensurePackages, interopDefault, toArray } from '../utils'
+import type { EslintFlatConfigItem, ReactOptions } from '../types'
+import { toArray } from '../utils'
 
-const reactConfig: (options?: ReactOptions) => Awaitable<EslintFlatConfigItem[]> = async (options: ReactOptions = {}) => {
+const reactConfig: (options?: ReactOptions) => EslintFlatConfigItem[] = (options: ReactOptions = {}) => {
   // TODO: https://github.com/jsx-eslint/eslint-plugin-react/issues/3699#issuecomment-2040983205
   const {
     files = [GLOB_TSX, GLOB_JSX],
     overrides = {},
   } = options
 
-  await ensurePackages([
-    '@eslint-react/eslint-plugin',
-    'eslint-plugin-react-hooks',
-    'eslint-plugin-react-refresh',
-  ])
-
   const tsconfigPath = options?.tsconfigPath
     ? toArray(options.tsconfigPath)
     : undefined
 
   const typeAware = !!tsconfigPath
-
-  const [
-    pluginReact,
-    pluginReactHooks,
-    pluginReactRefresh,
-    parserTs,
-  ] = await Promise.all([
-    interopDefault(import('eslint-plugin-react')),
-    interopDefault(import('eslint-plugin-react-hooks')),
-    interopDefault(import('eslint-plugin-react-refresh')),
-    interopDefault(import('@typescript-eslint/parser')),
-  ])
 
   return [
     {
