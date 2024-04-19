@@ -1,7 +1,7 @@
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin'
 import type { ParserOptions } from '@typescript-eslint/parser'
 import type { Linter } from 'eslint'
-import type { ConfigNames, RuleOptions } from './genType.d'
+import type { ConfigNames, RuleOptions } from './genType'
 
 export type Awaitable<T> = T | Promise<T>
 
