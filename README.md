@@ -1,10 +1,10 @@
 ## talljack-eslint-config
 
-Talljack's eslint config
+Talljack's ESlint config
 
 ## Why write it?
 
-When eslint upgrades to 9.x, my all projects need to update eslint config file, so I want to write my config to be reused in all projects.
+When ESlint upgrades to 9.x, my all projects need to update ESlint config file, so I want to write my config to be reused in all projects.
 
 ## How to use it?
 
@@ -20,7 +20,7 @@ import createEslintConfig from 'talljack-eslint-config'
 export default createEslintConfig()
 ```
 
-### Add eslint scripts for package.json
+### Add ESlint scripts for package.json
 
 ```typescript
 "scripts": {
@@ -62,6 +62,23 @@ Add the following settings to your `.vscode/settings.json`
 
 ## Customize it
 
+### Basic usage
+
+Use all of the options in the config file.
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  typescript: true,
+  jsonc: true,
+  markdown: true,
+  vue: true,
+  yaml: true,
+  formatter: true
+})
+```
+
 ### React
 
 To use React eslint config, you can turn it on.
@@ -76,6 +93,7 @@ export default createEslintConfig({
 
 
 ### Vue3
+
 To use the Vue3 eslint config, you can turn it on.
 
 ```typescript
@@ -85,6 +103,70 @@ export default createEslintConfig({
   vue: true
 })
 ```
+
+### Markdown
+
+To use the Markdown eslint config, you can turn it on.
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  markdown: true
+})
+```
+
+### Jsonc
+
+To use the Jsonc eslint config, you can turn it on.
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  jsonc: true
+})
+```
+
+### Yaml
+
+To use the Yaml eslint config, you can turn it on.
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  yaml: true
+})
+```
+
+### Formatters
+
+To use the Formatters eslint config, you can turn it on.
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  formatters: true
+})
+```
+
+### Stylistic
+
+To use the Stylistic eslint config, you can turn it on.
+
+**It's default true**
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  stylistic: true
+})
+```
+
+
 
 ### Type-aware rules
 
