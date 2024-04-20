@@ -23,6 +23,18 @@ import {
 import type { EslintFlatConfigItem, JavascriptOptions, OptionsConfig, ReactOptions, TypescriptOptions } from './types'
 import { getOverrides, interopDefault, resolveSubOptions } from './utils'
 
+const OptionsWithFlatItem: (keyof EslintFlatConfigItem)[] = [
+  'name',
+  'rules',
+  'ignores',
+  'processor',
+  'plugins',
+  'rules',
+  'settings',
+  'languageOptions',
+  'linterOptions',
+]
+
 export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem = {}, ...userConfigs: EslintFlatConfigItem[]) => {
   const {
     enableGitignore = true,
@@ -132,6 +144,15 @@ export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem
       ),
     )
   }
+  // options with custom flat items
+  const optionsFlatItemConfigs = OptionsWithFlatItem.reduce((prev, key) => {
+    if (key in options)
+      prev[key] = options[key] as any
+    return prev
+  }, {} as EslintFlatConfigItem)
+  if (Object.keys(optionsFlatItemConfigs).length)
+    configs.push(optionsFlatItemConfigs)
+
   if (userConfigs.length)
     configs.push(...userConfigs)
 
