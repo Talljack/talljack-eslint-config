@@ -44,6 +44,17 @@ const reactConfig: (options?: ReactOptions) => EslintFlatConfigItem[] = (options
       rules: {
         ...pluginReact.configs.recommended.rules,
         ...pluginReactHooks.configs.recommended.rules,
+        // https://github.com/jsx-eslint/eslint-plugin-react/issues/3699#issuecomment-2040983205
+        'react/display-name': 'off',
+        'react/jsx-no-undef': 'off',
+        'react/jsx-uses-react': 'off',
+        'react/jsx-uses-vars': 'off',
+        'react/no-danger-with-children': 'off',
+        'react/no-direct-mutation-state': 'off',
+        'react/no-string-refs': 'off',
+        'react/prop-types': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'react/require-render-return': 'off',
         ...typeAware
           ? {
               'react/no-leaked-conditional-rendering': 'warn',

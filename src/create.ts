@@ -23,7 +23,7 @@ import {
 import type { EslintFlatConfigItem, JavascriptOptions, OptionsConfig, ReactOptions, TypescriptOptions } from './types'
 import { getOverrides, interopDefault, resolveSubOptions } from './utils'
 
-export const createEslintConfig = (options: OptionsConfig, ...userConfigs: EslintFlatConfigItem[]) => {
+export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem = {}, ...userConfigs: EslintFlatConfigItem[]) => {
   const {
     enableGitignore = true,
     inEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
