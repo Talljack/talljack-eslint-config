@@ -59,7 +59,7 @@ const formatterConfig = (options: OptionsFormatters | true = {}, stylistic: Styl
         },
         name: 'formatter-css',
         rules: {
-          'format/perttier': [
+          'format/prettier': [
             'error',
             {
               ...prettierOptions,
@@ -75,7 +75,7 @@ const formatterConfig = (options: OptionsFormatters | true = {}, stylistic: Styl
         },
         name: 'formatter-scss',
         rules: {
-          'format/perttier': [
+          'format/prettier': [
             'error',
             {
               ...prettierOptions,
@@ -91,7 +91,7 @@ const formatterConfig = (options: OptionsFormatters | true = {}, stylistic: Styl
         },
         name: 'formatter-less',
         rules: {
-          'format/perttier': [
+          'format/prettier': [
             'error',
             {
               ...prettierOptions,
@@ -112,7 +112,7 @@ const formatterConfig = (options: OptionsFormatters | true = {}, stylistic: Styl
         },
         name: 'formatter-html',
         rules: {
-          'format/perttier': [
+          'format/prettier': [
             'error',
             {
               ...prettierOptions,
@@ -162,7 +162,7 @@ const formatterConfig = (options: OptionsFormatters | true = {}, stylistic: Styl
         },
         name: 'formatter-graphql',
         rules: {
-          'format/perttier': [
+          'format/prettier': [
             'error',
             {
               ...prettierOptions,
