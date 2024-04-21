@@ -59,8 +59,8 @@ export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem
         configs.push(interopDefault(import('eslint-config-flat-gitignore')).then(r => [r()]) as EslintFlatConfigItem)
     }
   }
-
-  configs.push(...ignoresConfig())
+  const customIgnores = options?.ignores ?? []
+  configs.push(...ignoresConfig(customIgnores))
   configs.push(...commentsConfig({
     overrides: getOverrides(options, 'comments'),
   }))
@@ -146,7 +146,7 @@ export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem
   }
   // options with custom flat items
   const optionsFlatItemConfigs = OptionsWithFlatItem.reduce((prev, key) => {
-    if (key in options)
+    if (key in options && key !== 'ignores')
       prev[key] = options[key] as any
     return prev
   }, {} as EslintFlatConfigItem)
