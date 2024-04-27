@@ -17,6 +17,7 @@ import {
   sortPackageJsonConfig,
   sortTsConfigJsonConfig,
   stylisticConfig,
+  testsConfig,
   typescriptConfig,
   vueConfig,
   yamlConfig,
@@ -153,6 +154,16 @@ export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem
         ...resolveSubOptions(options, 'astro'),
         overrides: getOverrides(options, 'astro'),
         stylistic,
+      }),
+    )
+  }
+  // test
+  if (options.test ?? true) {
+    configs.push(
+      ...testsConfig({
+        ...resolveSubOptions(options, 'test'),
+        inEditor,
+        overrides: getOverrides(options, 'test'),
       }),
     )
   }

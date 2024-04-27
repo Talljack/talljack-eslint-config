@@ -17,6 +17,7 @@ import sortConfig from './sort'
 import formatterConfig from './formatters'
 import yamlConfig from './yaml'
 import astroConfig from './astro'
+import testsConfig from './test'
 
 export {
   astroConfig,
@@ -34,6 +35,7 @@ export {
   sortPackageJsonConfig,
   sortTsConfigJsonConfig,
   stylisticConfig,
+  testsConfig,
   typescriptConfig,
   vueConfig,
   yamlConfig,

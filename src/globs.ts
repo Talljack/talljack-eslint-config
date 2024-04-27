@@ -38,6 +38,13 @@ export const GLOB_YAML = '**/*.y?(a)ml'
 // astro
 export const GLOB_ASTRO = '**/*.astro'
 
+// tests
+export const GLOB_TESTS = [
+  '**/__tests__/**/*.[jt]s?(x)',
+  '**/?(*.)+(spec|test).[jt]s?(x)',
+  '**/?(*.)+(spec|test).+(ts|js)x',
+]
+
 export const GLOB_EXCLUDE = [
   '**/node_modules',
   '**/dist',
