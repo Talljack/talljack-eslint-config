@@ -4,7 +4,7 @@ Talljack's ESlint config
 
 ## Why write it?
 
-When ESlint upgrades to 9.x, my all projects need to update ESlint config file, so I want to write my config to be reused in all projects.
+When ESlint upgrades to 9.x, my all projects need to update the ESlint config file, so I want to write my config to be reused in all projects.
 
 ## How to use it?
 
@@ -137,6 +137,18 @@ To use the Yaml eslint config, you can turn it on.
 import createEslintConfig from 'talljack-eslint-config'
 export default createEslintConfig({
   yaml: true
+})
+```
+
+### Astro
+
+To use the Astro eslint config, you can turn it on.
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  astro: true
 })
 ```
 

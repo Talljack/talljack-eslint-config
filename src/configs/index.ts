@@ -16,8 +16,10 @@ import vueConfig from './vue'
 import sortConfig from './sort'
 import formatterConfig from './formatters'
 import yamlConfig from './yaml'
+import astroConfig from './astro'
 
 export {
+  astroConfig,
   commentsConfig,
   formatterConfig,
   ignoresConfig,
