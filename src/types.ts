@@ -155,6 +155,8 @@ export type StylisticOptions = OptionsWithStylistics & OptionsOverrides
 
 export type YamlOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStylistics
 
+export type AstroOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStylistics
+
 export interface DprintOptions {
   indentWidth?: number
   quoteStyle?: 'preferSingle' | 'perferDouble'
@@ -191,6 +193,8 @@ export interface OptionsConfig {
   stylistic?: boolean | StylisticConfig
   formatters?: boolean | OptionsFormatters
   yaml?: boolean | YamlOptions
+
+  astro?: boolean | AstroOptions
   overrides?: {
     typescript?: EslintFlatConfigItem['rules']
     react?: EslintFlatConfigItem['rules']
@@ -203,6 +207,7 @@ export interface OptionsConfig {
     stylistic?: EslintFlatConfigItem['rules']
     sort?: EslintFlatConfigItem['rules']
     yaml?: EslintFlatConfigItem['rules']
+    astro?: EslintFlatConfigItem['rules']
   }
 }
 

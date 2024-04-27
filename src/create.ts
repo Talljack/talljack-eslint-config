@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
 import { isPackageExists } from 'local-pkg'
 import {
+  astroConfig,
   commentsConfig,
   formatterConfig,
   ignoresConfig,
@@ -37,6 +38,7 @@ const OptionsWithFlatItem: (keyof EslintFlatConfigItem)[] = [
 
 export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem = {}, ...userConfigs: EslintFlatConfigItem[]) => {
   const {
+    astro = false,
     enableGitignore = true,
     inEditor = !!((process.env.VSCODE_PID || process.env.VSCODE_CWD || process.env.JETBRAINS_IDE || process.env.VIM) && !process.env.CI),
     jsonc,
@@ -142,6 +144,16 @@ export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem
         options.formatters,
         typeof stylistic === 'object' ? stylistic : {},
       ),
+    )
+  }
+  // astro
+  if (astro) {
+    configs.push(
+      ...astroConfig({
+        ...resolveSubOptions(options, 'astro'),
+        overrides: getOverrides(options, 'astro'),
+        stylistic,
+      }),
     )
   }
   // options with custom flat items

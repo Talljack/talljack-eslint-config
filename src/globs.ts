@@ -35,6 +35,9 @@ export const GLOB_GRAPHQL = '**/*.{g,graph}ql'
 // yaml
 export const GLOB_YAML = '**/*.y?(a)ml'
 
+// astro
+export const GLOB_ASTRO = '**/*.astro'
+
 export const GLOB_EXCLUDE = [
   '**/node_modules',
   '**/dist',
