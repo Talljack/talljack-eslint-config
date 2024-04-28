@@ -1,3 +1,4 @@
+import { isPackageExists } from 'local-pkg'
 import type { Awaitable, EslintFlatConfigItem, OptionsConfig, ResolveOptions } from './types'
 
 export const toArray = <T>(value: T | T[]) => {
@@ -23,4 +24,20 @@ export const interopDefault = async <T>(value: Awaitable<T>): Promise<T extends 
 
 export const combineConfigs = async (...configs: Awaitable<EslintFlatConfigItem[]>[]): Promise<EslintFlatConfigItem[]> => {
   return (await Promise.all(configs)).flat()
+}
+
+export const ensurePackagesInstalled = async (packages: string[]) => {
+  if (process.env.CI || process.stdout.isTTY === false)
+    return
+
+  const nonExistsPackages = packages.filter(pkg => pkg && !isPackageExists(pkg))
+  if (nonExistsPackages.length === 0)
+    return
+
+  const { confirm } = await import('@clack/prompts')
+  const res = await confirm({
+    message: `The following packages are required: ${nonExistsPackages.join(', ')}`,
+  })
+  if (res)
+    await import('@antfu/install-pkg').then(i => i.installPackage(nonExistsPackages, { dev: true }))
 }

@@ -108,5 +108,6 @@
   },
   "include": [
     "**/*.ts"
-  ]
+  ],
+  "exclude": ["fixtures/**"]
 }

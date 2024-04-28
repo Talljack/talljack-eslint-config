@@ -8,6 +8,7 @@ export default createEslintConfig(
     jsonc: true,
     markdown: true,
     react: true,
+    solid: true,
     sort: true,
     stylistic: true,
     test: true,
