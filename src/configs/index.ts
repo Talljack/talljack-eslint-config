@@ -18,6 +18,7 @@ import formatterConfig from './formatters'
 import yamlConfig from './yaml'
 import astroConfig from './astro'
 import testsConfig from './test'
+import solidConfig from './solid'
 
 export {
   astroConfig,
@@ -31,6 +32,7 @@ export {
   markdownConfig,
   nodeConfig,
   reactConfig,
+  solidConfig,
   sortConfig,
   sortPackageJsonConfig,
   sortTsConfigJsonConfig,

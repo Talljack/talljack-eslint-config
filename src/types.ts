@@ -157,6 +157,8 @@ export type YamlOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStyli
 
 export type AstroOptions = OptionsOverrides & OptionsWithFiles & OptionsWithStylistics
 
+export type SolidOptions = OptionsOverrides & OptionsWithFiles & OptionsHasTypescript & OptionsTypescriptWithTypes
+
 export type TestOptions = OptionsOverrides & OptionsWithFiles & {
   inEditor?: boolean
 }
@@ -202,6 +204,8 @@ export interface OptionsConfig {
 
   test?: boolean | TestOptions
 
+  solid?: boolean | SolidOptions
+
   overrides?: {
     typescript?: EslintFlatConfigItem['rules']
     react?: EslintFlatConfigItem['rules']
@@ -216,6 +220,7 @@ export interface OptionsConfig {
     yaml?: EslintFlatConfigItem['rules']
     astro?: EslintFlatConfigItem['rules']
     test?: EslintFlatConfigItem['rules']
+    solid?: EslintFlatConfigItem['rules']
   }
 }
 

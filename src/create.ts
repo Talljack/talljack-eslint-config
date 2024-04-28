@@ -13,6 +13,7 @@ import {
   markdownConfig,
   nodeConfig,
   reactConfig,
+  solidConfig,
   sortConfig,
   sortPackageJsonConfig,
   sortTsConfigJsonConfig,
@@ -22,7 +23,7 @@ import {
   vueConfig,
   yamlConfig,
 } from './configs'
-import type { EslintFlatConfigItem, JavascriptOptions, OptionsConfig, ReactOptions, TypescriptOptions } from './types'
+import type { Awaitable, EslintFlatConfigItem, JavascriptOptions, OptionsConfig, ReactOptions, TypescriptOptions } from './types'
 import { getOverrides, interopDefault, resolveSubOptions } from './utils'
 
 const OptionsWithFlatItem: (keyof EslintFlatConfigItem)[] = [
@@ -37,7 +38,7 @@ const OptionsWithFlatItem: (keyof EslintFlatConfigItem)[] = [
   'linterOptions',
 ]
 
-export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem = {}, ...userConfigs: EslintFlatConfigItem[]) => {
+export const createEslintConfig = async (options: OptionsConfig & EslintFlatConfigItem = {}, ...userConfigs: EslintFlatConfigItem[]) => {
   const {
     astro = false,
     enableGitignore = true,
@@ -51,7 +52,7 @@ export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem
   } = options
 
   const stylistic = options.stylistic === false ? false : typeof options.stylistic === 'object' ? options.stylistic : {}
-  const configs: EslintFlatConfigItem[] = []
+  const configs: Awaitable<EslintFlatConfigItem[]> = []
 
   if (enableGitignore) {
     if (typeof enableGitignore !== 'boolean') {
@@ -167,6 +168,16 @@ export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem
       }),
     )
   }
+  // solid
+  if (options.solid) {
+    configs.push(
+      ...(await solidConfig({
+        ...resolveSubOptions(options, 'solid'),
+        overrides: getOverrides(options, 'solid'),
+        typescript: !!typescript,
+      })),
+    )
+  }
   // options with custom flat items
   const optionsFlatItemConfigs = OptionsWithFlatItem.reduce((prev, key) => {
     if (key in options && key !== 'ignores')
@@ -175,7 +186,6 @@ export const createEslintConfig = (options: OptionsConfig & EslintFlatConfigItem
   }, {} as EslintFlatConfigItem)
   if (Object.keys(optionsFlatItemConfigs).length)
     configs.push(optionsFlatItemConfigs)
-
   if (userConfigs.length)
     configs.push(...userConfigs)
 

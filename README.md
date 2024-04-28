@@ -141,13 +141,34 @@ export default createEslintConfig({
 
 ### Astro
 
-To use the Astro ESLint config, you can turn it on.
+To use the Astro ESLint config, you can turn it on(**you need to install `eslint-plugin-astro`**).
+
+```typescript
+pnpm add -D eslint-plugin-astro
+```
 
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
 export default createEslintConfig({
   astro: true
+})
+```
+
+### Solid
+
+To use the Solid ESLint config, you can turn it on(**you need to install `eslint-plugin-solid`**).
+
+```typescript
+pnpm add -D eslint-plugin-solid
+```
+
+
+```typescript
+// eslint.config.js
+import createEslintConfig from 'talljack-eslint-config'
+export default createEslintConfig({
+  solid: true
 })
 ```
 
