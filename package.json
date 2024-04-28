@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@antfu/install-pkg": "^0.3.3",
+    "@clack/prompts": "^0.7.0",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
     "eslint-config-flat-gitignore": "^0.1.5",
