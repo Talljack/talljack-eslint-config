@@ -125,11 +125,10 @@ const javascriptConfig: (options?: JavascriptOptions) => EslintFlatConfigItem[] 
         ],
         'unused-imports/no-unused-imports': inEditor ? 'off' : 'error',
         'unused-imports/no-unused-vars': [
-          'error',
+          'warn',
           {
             args: 'after-used',
             argsIgnorePattern: '^_',
-            ignoreRestSiblings: true,
             vars: 'all',
             varsIgnorePattern: '^_',
           },
