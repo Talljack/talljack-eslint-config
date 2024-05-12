@@ -1,7 +1,7 @@
 {
   "name": "talljack-eslint-config",
   "type": "module",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "packageManager": "bun@1.1.8",
   "description": "Talljack's eslint config",
   "author": "talljack <yugang.cao12@gmail.com> (https://github.com/talljack)",
