@@ -149,6 +149,11 @@ export interface RuleOptions {
    */
   '@stylistic/jsx-first-prop-new-line'?: Linter.RuleEntry<StylisticJsxFirstPropNewLine>
   /**
+   * Enforce line breaks before and after JSX elements when they are used as arguments to a function.
+   * @see https://eslint.style/rules/jsx/jsx-function-call-newline
+   */
+  '@stylistic/jsx-function-call-newline'?: Linter.RuleEntry<StylisticJsxFunctionCallNewline>
+  /**
    * Enforce JSX indentation
    * @see https://eslint.style/rules/jsx/jsx-indent
    */
@@ -219,6 +224,11 @@ export interface RuleOptions {
    */
   '@stylistic/keyword-spacing'?: Linter.RuleEntry<StylisticKeywordSpacing>
   /**
+   * Enforce position of line comments
+   * @see https://eslint.style/rules/js/line-comment-position
+   */
+  '@stylistic/line-comment-position'?: Linter.RuleEntry<StylisticLineCommentPosition>
+  /**
    * Enforce consistent linebreak style
    * @see https://eslint.style/rules/js/linebreak-style
    */
@@ -248,6 +258,11 @@ export interface RuleOptions {
    * @see https://eslint.style/rules/ts/member-delimiter-style
    */
   '@stylistic/member-delimiter-style'?: Linter.RuleEntry<StylisticMemberDelimiterStyle>
+  /**
+   * Enforce a particular style for multiline comments
+   * @see https://eslint.style/rules/js/multiline-comment-style
+   */
+  '@stylistic/multiline-comment-style'?: Linter.RuleEntry<StylisticMultilineCommentStyle>
   /**
    * Enforce newlines between operands of ternary expressions
    * @see https://eslint.style/rules/js/multiline-ternary
@@ -945,7 +960,7 @@ export interface RuleOptions {
   '@typescript-eslint/no-unused-expressions'?: Linter.RuleEntry<TypescriptEslintNoUnusedExpressions>
   /**
    * Disallow unused variables
-   * @see https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-imports.md
+   * @see https://typescript-eslint.io/rules/no-unused-vars
    */
   '@typescript-eslint/no-unused-vars'?: Linter.RuleEntry<TypescriptEslintNoUnusedVars>
   /**
@@ -6697,6 +6712,8 @@ interface _StylisticJsxCurlySpacing_BasicConfig {
 type StylisticJsxEqualsSpacing = []|[("always" | "never")]
 // ----- @stylistic/jsx-first-prop-new-line -----
 type StylisticJsxFirstPropNewLine = []|[("always" | "never" | "multiline" | "multiline-multiprop" | "multiprop")]
+// ----- @stylistic/jsx-function-call-newline -----
+type StylisticJsxFunctionCallNewline = []|[("always" | "multiline")]
 // ----- @stylistic/jsx-indent -----
 type StylisticJsxIndent = []|[("tab" | number)]|[("tab" | number), {
   checkAttributes?: boolean
@@ -6726,7 +6743,7 @@ type StylisticJsxNewline = []|[{
 }]
 // ----- @stylistic/jsx-one-expression-per-line -----
 type StylisticJsxOneExpressionPerLine = []|[{
-  allow?: ("none" | "literal" | "single-child")
+  allow?: ("none" | "literal" | "single-child" | "single-line")
 }]
 // ----- @stylistic/jsx-pascal-case -----
 type StylisticJsxPascalCase = []|[{
@@ -6769,6 +6786,7 @@ type StylisticJsxWrapMultilines = []|[{
   condition?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
   logical?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
   prop?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+  propertyValue?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
 }]
 // ----- @stylistic/key-spacing -----
 type StylisticKeySpacing = []|[({
@@ -7099,6 +7117,13 @@ type StylisticKeywordSpacing = []|[{
     }
   }
 }]
+// ----- @stylistic/line-comment-position -----
+type StylisticLineCommentPosition = []|[(("above" | "beside") | {
+  position?: ("above" | "beside")
+  ignorePattern?: string
+  applyDefaultPatterns?: boolean
+  applyDefaultIgnorePatterns?: boolean
+})]
 // ----- @stylistic/linebreak-style -----
 type StylisticLinebreakStyle = []|[("unix" | "windows")]
 // ----- @stylistic/lines-around-comment -----
@@ -7252,6 +7277,10 @@ interface _StylisticMemberDelimiterStyle_DelimiterConfig {
     requireLast?: boolean
   }
 }
+// ----- @stylistic/multiline-comment-style -----
+type StylisticMultilineCommentStyle = ([]|[("starred-block" | "bare-block")] | []|["separate-lines"]|["separate-lines", {
+  checkJSDoc?: boolean
+}])
 // ----- @stylistic/multiline-ternary -----
 type StylisticMultilineTernary = []|[("always" | "always-multiline" | "never")]|[("always" | "always-multiline" | "never"), {
   ignoreJSX?: boolean
