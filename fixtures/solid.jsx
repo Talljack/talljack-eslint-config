@@ -1,13 +1,20 @@
-import { For } from 'solid-js'
+import { createSignal } from 'solid-js'
+import { render } from 'solid-js/web'
 
-/* eslint no-unused-vars: "off" */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const _Component = props => (
-  <ol>
-    <For each={props.data}>
-      {d => (
-        <li>{d.text}</li>
-      )}
-    </For>
-  </ol>
-)
+/**
+ *
+ */
+function Counter() {
+  const [count, setCount] = createSignal(0)
+  const doubleCount = () => count() * 2
+
+  return (
+    <>
+      <button onClick={() => setCount(c => c + 1)}>
+        {doubleCount()}
+      </button>
+    </>
+  )
+}
+
+render(Counter, document.getElementById('app'))

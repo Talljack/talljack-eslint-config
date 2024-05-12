@@ -17,15 +17,18 @@ And create `eslint.config.js`(you need to set package.json's `type` to `module`)
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig()
 ```
 
 ### Add ESLint scripts for package.json
 
-```typescript
-"scripts": {
-  "lint": "eslint .",
-  "fix": "eslint . --fix"
+```json
+{
+  "scripts": {
+    "lint": "eslint .",
+    "fix": "eslint . --fix"
+  }
 }
 ```
 
@@ -35,12 +38,12 @@ Install [VS Code ESLint extension](https://marketplace.visualstudio.com/items?it
 
 Add the following settings to your `.vscode/settings.json`
 
-```typescript
+```json
 {
   "eslint.experimental.useFlatConfig": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never",
+    "source.organizeImports": "never"
   },
   "editor.formatOnSave": false,
   "eslint.validate": [
@@ -55,7 +58,7 @@ Add the following settings to your `.vscode/settings.json`
     "jsonc",
     "json5",
     "astro"
-  ],
+  ]
 }
 ```
 
@@ -69,13 +72,14 @@ Use all of the options in the config file.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  typescript: true,
+  formatter: true,
   jsonc: true,
   markdown: true,
+  typescript: true,
   vue: true,
   yaml: true,
-  formatter: true
 })
 ```
 
@@ -85,8 +89,9 @@ To use the React ESLint config, you can turn it on.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  react: true
+  react: true,
 })
 ```
 
@@ -98,8 +103,9 @@ To use the Vue3 ESLint config, you can turn it on.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  vue: true
+  vue: true,
 })
 ```
 
@@ -110,8 +116,9 @@ To use the Markdown ESLint config, you can turn it on.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  markdown: true
+  markdown: true,
 })
 ```
 
@@ -122,8 +129,9 @@ To use the Jsonc ESLint config, you can turn it on.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  jsonc: true
+  jsonc: true,
 })
 ```
 
@@ -134,8 +142,9 @@ To use the Yaml ESLint config, you can turn it on.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  yaml: true
+  yaml: true,
 })
 ```
 
@@ -143,15 +152,16 @@ export default createEslintConfig({
 
 To use the Astro ESLint config, you can turn it on(**you need to install `eslint-plugin-astro`**).
 
-```typescript
+```bash
 pnpm add -D eslint-plugin-astro
 ```
 
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  astro: true
+  astro: true,
 })
 ```
 
@@ -159,7 +169,7 @@ export default createEslintConfig({
 
 To use the Solid ESLint config, you can turn it on(**you need to install `eslint-plugin-solid`**).
 
-```typescript
+```bash
 pnpm add -D eslint-plugin-solid
 ```
 
@@ -167,8 +177,9 @@ pnpm add -D eslint-plugin-solid
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  solid: true
+  solid: true,
 })
 ```
 
@@ -179,8 +190,9 @@ To use the Test ESLint config, you can turn it on.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  test: true
+  test: true,
 })
 ```
 
@@ -191,8 +203,9 @@ To use the Formatters ESLint config, you can turn it on.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  formatters: true
+  formatters: true,
 })
 ```
 
@@ -205,8 +218,9 @@ To use the Stylistic ESLint config, you can turn it on.
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
-  stylistic: true
+  stylistic: true,
 })
 ```
 
@@ -219,10 +233,11 @@ you can read more [type-aware](https://typescript-eslint.io/getting-started/type
 ```typescript
 // eslint.config.js
 import createEslintConfig from 'talljack-eslint-config'
+
 export default createEslintConfig({
   typescript: {
-    tsconfigPath: 'tsconfig.json'
-  }
+    tsconfigPath: 'tsconfig.json',
+  },
 })
 ```
 
@@ -232,7 +247,7 @@ If you want to apply lint and auto-fix before every commit, you can add the foll
 
 you need to install `lint-staged` and `simple-git-hooks`
 
-```typescript
+```bash
 pnpm i -D lint-staged simple-git-hooks
 
 npx simple-git-hooks
@@ -241,7 +256,7 @@ npx simple-git-hooks
 
 then
 
-```typescript
+```json
 // package.json
 {
   "simple-git-hooks": {
