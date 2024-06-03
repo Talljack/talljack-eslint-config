@@ -80,7 +80,7 @@
     "@types/eslint": "^8.56.10",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.12.11",
-    "bundle-require": "^4.1.0",
+    "bundle-require": "^5.0.0",
     "eslint": "^9.2.0",
     "eslint-plugin-no-only-tests": "^3.1.0",
     "eslint-plugin-solid": "^0.14.0",
