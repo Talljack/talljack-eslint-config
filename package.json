@@ -91,7 +91,7 @@
     "fs-extra": "^11.2.0",
     "globals": "^15.2.0",
     "lint-staged": "^15.2.2",
-    "rimraf": "^5.0.7",
+    "rimraf": "^6.0.0",
     "simple-git-hooks": "^2.11.1",
     "solid-js": "^1.8.17",
     "tsup": "^8.0.2",
