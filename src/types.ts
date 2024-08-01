@@ -104,7 +104,7 @@ export interface PrettierOptionsRequired {
 
 export type PerttierOptions = Partial<PrettierOptionsRequired>
 
-export type EslintFlatConfigItem = Omit<Linter.FlatConfig<Linter.RulesRecord & RuleOptions>, 'plugins'> & {
+export type EslintFlatConfigItem = Omit<Linter.Config<Linter.RulesRecord & RuleOptions>, 'plugins'> & {
   plugins?: Record<string, any>
 }
 
@@ -121,15 +121,14 @@ export interface OptionsTypescriptWithTypes {
 }
 
 export interface OptionsWithFiles {
-  files?: Linter.FlatConfig['files']
+  files?: Linter.Config['files']
 }
 
 export interface OptionsWithStylistics {
   stylistic?: boolean | StylisticConfig
 }
 
-export interface StylisticConfig extends Pick<StylisticCustomizeOptions, 'indent' | 'quotes' | 'jsx' | 'semi' | 'arrowParens' | 'commaDangle'> {
-}
+export type StylisticConfig = Pick<StylisticCustomizeOptions, 'indent' | 'quotes' | 'jsx' | 'semi' | 'arrowParens' | 'commaDangle'>
 
 export type ReactOptions = OptionsOverrides & OptionsHasTypescript & OptionsWithFiles & OptionsTypescriptWithTypes
 
